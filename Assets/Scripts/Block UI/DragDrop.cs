@@ -41,7 +41,10 @@ IDragHandler
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("OnBeginDrag");
-        GameObject newClone = Instantiate(clone, transform.position, transform.rotation,canvas.transform);
+        if(!inSlot)
+        {
+            GameObject newClone = Instantiate(clone, transform.position, transform.rotation,canvas.transform);
+        }
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = .6f;
         inSlot = false;
