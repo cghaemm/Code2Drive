@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7884303796183876532}
   - component: {fileID: 7884303796183876535}
   - component: {fileID: 7884303796183876534}
+  - component: {fileID: 8290597242605076635}
   - component: {fileID: 7884303796183876533}
   m_Layer: 5
   m_Name: Block
@@ -89,6 +90,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+--- !u!114 &8290597242605076635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7884303796183876680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518bb93d428f0914db3dcadf04da6095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 5
+  timeLeft: 1.5
 --- !u!225 &7884303796183876533
 CanvasGroup:
   m_ObjectHideFlags: 0

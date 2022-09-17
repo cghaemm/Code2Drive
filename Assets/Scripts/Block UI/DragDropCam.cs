@@ -47,15 +47,6 @@ IDragHandler
             }
             Destroy(gameObject);
         }
-        else
-        {
-            if(wasSlotted)
-            {
-                // Remove this block from the resultStack
-                Debug.Log("I was moved from the result stack into the result stack again");
-                //resultStack.GetComponent<ResultBlockCam>().removeBlock(gameObject);
-            }
-        }
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
@@ -66,6 +57,10 @@ IDragHandler
             GameObject newClone = Instantiate(clone, transform.position, transform.rotation,canvas.transform);
             newClone.GetComponent<BlockData>().test += 1;
         }
+        //else
+        //{
+        //    resultStack.GetComponent<ResultBlockCam>().removeBlock(gameObject);
+        //}
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = .6f;
         inSlot = false;
@@ -75,6 +70,11 @@ IDragHandler
     public void OnDrag(PointerEventData eventData) {
         //Debug.Log("OnDrag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+    }
+
+    public bool checkSlotted()
+    {
+        return wasSlotted;
     }
 
 

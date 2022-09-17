@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class ResultBlock : MonoBehaviour, IDropHandler
 {
+    public Button runButton;
+
     private int numBlocks = 0;
     private RectTransform rectTransform;
     private List<GameObject> blocks = new List<GameObject>();
@@ -31,14 +35,51 @@ public class ResultBlock : MonoBehaviour, IDropHandler
         }
     }
 
-    public void Run()
+    private int getIndexOfBlock(GameObject block)
     {
-        List<string> test = new List<string>{"dog", "cat", "cow"};
-        for(int i = 0; i < test.Count; i++) // i = i - 1
+        for(int i = 0; i < blocks.Count; i++)
         {
-            Debug.Log("i is equal to " + i);
-            Debug.Log(test[i]);
+            if(blocks[i] == block)
+            {
+                return i;
+            }
         }
+        return -1;
+    }
+
+    public void removeBlock(GameObject block)
+    {
+        int num = getIndexOfBlock(block);
+        blocks.Remove(block);
+        numBlocks = numBlocks - 1;
+        
+        // Loop through the remaining blocks and update the position of every other block
+        for(int i = num; i < blocks.Count; i++)
+        {
+            blocks[i].GetComponent<RectTransform>().anchoredPosition = 
+            rectTransform.anchoredPosition                                                // Position of Result Block
+            + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)    // Height of our block divided 2
+            - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height*i);      // The heights of the blocks above our current block
+        }
+
+    }
+
+    public async void Run()
+    {
+        runButton.interactable = false;
+        for(int i = 0; i < blocks.Count; i++)
+        {
+            blocks[i].GetComponent<TestBlockData>().BlockRun();
+            while(!blocks[i].GetComponent<TestBlockData>().getStatus())
+            {
+                await Task.Yield();
+            }
+            Debug.Log("GameObject: " + blocks[i]);
+        }
+
+
+        runButton.interactable = true;
+
     }
     
 }

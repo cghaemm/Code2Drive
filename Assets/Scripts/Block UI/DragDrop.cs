@@ -7,6 +7,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 IDragHandler
 {
     public Canvas canvas;
+    public GameObject resultStack;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -33,8 +34,10 @@ IDragHandler
         Debug.Log("OnEndDrag");
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
+
         if(!inSlot)
         {
+            // Remove the block from the ResultBlock List
             Destroy(gameObject);
         }
     }
@@ -44,6 +47,10 @@ IDragHandler
         if(!inSlot)
         {
             GameObject newClone = Instantiate(clone, transform.position, transform.rotation,canvas.transform);
+        }
+        else
+        {
+            resultStack.GetComponent<ResultBlock>().removeBlock(gameObject);
         }
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = .6f;
