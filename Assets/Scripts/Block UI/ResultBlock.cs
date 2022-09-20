@@ -67,16 +67,28 @@ public class ResultBlock : MonoBehaviour, IDropHandler
     public async void Run()
     {
         runButton.interactable = false;
+        // Loop through every block and make them non-interactable
         for(int i = 0; i < blocks.Count; i++)
         {
-            blocks[i].GetComponent<TestBlockData>().BlockRun();
-            while(!blocks[i].GetComponent<TestBlockData>().getStatus())
+            blocks[i].GetComponent<IBlockInterface>().blockRaycast();
+        }
+
+        // Runs every block in our ResultBlock
+        for(int i = 0; i < blocks.Count; i++)
+        {
+            blocks[i].GetComponent<IBlockInterface>().BlockRun();
+            while(!blocks[i].GetComponent<IBlockInterface>().getStatus())
             {
                 await Task.Yield();
             }
             Debug.Log("GameObject: " + blocks[i]);
         }
 
+        // Loops through every block in our ResultBlock and resets them
+        for(int i = 0; i < blocks.Count; i++)
+        {
+            blocks[i].GetComponent<IBlockInterface>().resetBlock();
+        }
 
         runButton.interactable = true;
 
