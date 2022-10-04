@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCar : MonoBehaviour
 {
     Animator animator;
+    private bool turnLeftWithSignal;
+    private bool turnRightWithSignal;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,9 @@ public class PlayerCar : MonoBehaviour
 
         animator.SetBool("LeftTurnSignal", false);
         animator.SetBool("RightTurnSignal", false);
+
+        turnLeftWithSignal = false;
+        turnRightWithSignal = false; 
     }
 
     // Update is called once per frame
@@ -39,41 +44,17 @@ public class PlayerCar : MonoBehaviour
         // Left Turn Signal
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            // Only turn left turn signal on if right turn signal is off
-            if(!animator.GetBool("RightTurnSignal"))
-            {
-                // Turn off turn signal if already on
-                if(animator.GetBool("LeftTurnSignal"))
-                {
-                    animator.SetBool("LeftTurnSignal", false);
-                }
-                // Turn on turn signal
-                else
-                {
-                    animator.SetBool("LeftTurnSignal", true);
-                }
-            }
+           leftTurnSignal();
         }
 
         // Right Turn Signal
         if(Input.GetKeyDown(KeyCode.E))
         {
-            // Only turn the right turn signal on if the left turn signal is off
-            if(!animator.GetBool("LeftTurnSignal"))
-            {
-                // Turn off turn signal if already on
-                if(animator.GetBool("RightTurnSignal"))
-                {
-                    animator.SetBool("RightTurnSignal", false);
-                }
-                // Turn on turn signal
-                else
-                {
-                    animator.SetBool("RightTurnSignal", true);
-                }
-            }
+           rightTurnSignal();
            
         }
+
+        
         
     }
 
@@ -81,18 +62,88 @@ public class PlayerCar : MonoBehaviour
     {
         animator.SetBool("TurnLeft", true);
         animator.SetBool("TurnRight", false);
+
+        if(animator.GetBool("LeftTurnSignal") == true)
+        {
+            turnLeftWithSignal = true;
+        }
+
+        if(turnRightWithSignal == true)
+        {
+            rightTurnSignal();
+        }
     }
 
     public void turnRight()
     {
         animator.SetBool("TurnRight", true);
         animator.SetBool("TurnLeft", false);
+
+        if(animator.GetBool("RightTurnsSignal") == true)
+        {
+            turnRightWithSignal = true;
+        }
+
+        if(turnLeftWithSignal)
+        {
+            leftTurnSignal();
+        }
     }
 
     public void goStraight()
     {
         animator.SetBool("TurnRight", false);
         animator.SetBool("TurnLeft", false);
+
+        if(turnLeftWithSignal == true) 
+        {
+            leftTurnSignal(); 
+        }
+
+        if(turnRightWithSignal == true)
+        {
+            rightTurnSignal();
+        }
+    }
+
+    public void leftTurnSignal()
+    {
+        if(!animator.GetBool("RightTurnSignal"))
+        {
+           
+            if(animator.GetBool("LeftTurnSignal"))
+            {
+                animator.SetBool("LeftTurnSignal", false);
+            }
+                
+            else
+            {
+                animator.SetBool("LeftTurnSignal", true);
+
+                if(animator.GetBool("TurnLeft") == true)
+                {
+                    turnLeftWithSignal = true; 
+                }
+            }
+        }
+    }
+
+    public void rightTurnSignal()
+    {
+        
+        if(!animator.GetBool("LeftTurnSignal"))
+        {
+               
+            if(animator.GetBool("RightTurnSignal"))
+            {
+                animator.SetBool("RightTurnSignal", false);
+            }
+               
+            else
+            {
+                animator.SetBool("RightTurnSignal", true);
+            }
+        }
     }
 
 
