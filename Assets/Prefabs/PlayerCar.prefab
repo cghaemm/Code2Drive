@@ -739,9 +739,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3588224058596235290}
   - component: {fileID: 4159197758989373150}
-  - component: {fileID: 1716891606384786508}
   - component: {fileID: 1716891606384786509}
   - component: {fileID: 1716891605258716683}
+  - component: {fileID: 5927209792349943030}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Untagged
@@ -872,21 +872,6 @@ LODGroup:
     - renderer: {fileID: 3594048847800064458}
     - renderer: {fileID: 370021965134030271}
   m_Enabled: 1
---- !u!111 &1716891606384786508
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545136893528205833}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: df2f3b83b167cf94a96c1b9e25d2ad59, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &1716891606384786509
 Animator:
   serializedVersion: 3
@@ -918,6 +903,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c8b60051336c84caeb7094824cf9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &5927209792349943030
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 3
 --- !u!1 &625624423475933585
 GameObject:
   m_ObjectHideFlags: 0
