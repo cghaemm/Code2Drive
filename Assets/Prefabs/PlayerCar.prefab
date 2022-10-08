@@ -760,7 +760,201 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1 &875138722913784051
+=======
+--- !u!1 &545136893528205833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3588224058596235290}
+  - component: {fileID: 4159197758989373150}
+  - component: {fileID: 1716891606384786509}
+  - component: {fileID: 1716891605258716683}
+  - component: {fileID: 6514918693547485482}
+  m_Layer: 0
+  m_Name: PlayerCar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3588224058596235290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6058667, y: 0.75, z: -2.7778566}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5258487995124898927}
+  - {fileID: 3331651351059153245}
+  - {fileID: 4939647330437167914}
+  - {fileID: 8770277831221895973}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4159197758989373150
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.00000035762787, y: 0.8213453, z: 0.025895119}
+  m_Size: 5.2448006
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.61131555
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7477705076675512294}
+    - renderer: {fileID: 5971653476958026992}
+    - renderer: {fileID: 2466756961663488228}
+    - renderer: {fileID: 3948536068772907113}
+    - renderer: {fileID: 8691168980595156311}
+    - renderer: {fileID: 4127590501791533344}
+    - renderer: {fileID: 5278300717025473408}
+    - renderer: {fileID: 3480540604706157598}
+    - renderer: {fileID: 5214073805065668243}
+    - renderer: {fileID: 537470643289133868}
+    - renderer: {fileID: 880404855661862590}
+    - renderer: {fileID: 3090972908469534051}
+    - renderer: {fileID: 5902796931182063674}
+    - renderer: {fileID: 3755777294438454547}
+    - renderer: {fileID: 4643692559282107936}
+    - renderer: {fileID: 4911237828592896141}
+    - renderer: {fileID: 861404553643081938}
+    - renderer: {fileID: 3802178080118145562}
+    - renderer: {fileID: 1840317247185931223}
+    - renderer: {fileID: 5613022222602344717}
+    - renderer: {fileID: 1738220541442314135}
+    - renderer: {fileID: 8296506809428472229}
+    - renderer: {fileID: 101065950683208925}
+  - screenRelativeHeight: 0.26949838
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6640221804220485543}
+    - renderer: {fileID: 6543448406734143417}
+    - renderer: {fileID: 8626159627051719230}
+    - renderer: {fileID: 7321544320889134319}
+    - renderer: {fileID: 8957113926184431149}
+    - renderer: {fileID: 3024084530616932317}
+    - renderer: {fileID: 4776221840268706321}
+    - renderer: {fileID: 2933112555714892470}
+    - renderer: {fileID: 6322716169699204865}
+    - renderer: {fileID: 8584075593219585941}
+    - renderer: {fileID: 8909290545108347820}
+    - renderer: {fileID: 6357400728670571168}
+    - renderer: {fileID: 4699429657042481691}
+    - renderer: {fileID: 8008125750044080153}
+    - renderer: {fileID: 4020513455835446791}
+    - renderer: {fileID: 1071600555160697871}
+    - renderer: {fileID: 7390768977665362751}
+    - renderer: {fileID: 5654577955669393617}
+    - renderer: {fileID: 7513037266770383662}
+    - renderer: {fileID: 4817119442912457151}
+    - renderer: {fileID: 1273869632018313877}
+    - renderer: {fileID: 2511629523879005317}
+    - renderer: {fileID: 7155780062654417411}
+  - screenRelativeHeight: 0.101166345
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7310934285188118703}
+    - renderer: {fileID: 7274246291935456137}
+    - renderer: {fileID: 2028370567727943905}
+    - renderer: {fileID: 5993551073399542639}
+    - renderer: {fileID: 4745903284193601262}
+    - renderer: {fileID: 3936008772978194258}
+    - renderer: {fileID: 5049120189157616413}
+    - renderer: {fileID: 4564153136323166042}
+    - renderer: {fileID: 215012111873106684}
+    - renderer: {fileID: 1046485642156581689}
+    - renderer: {fileID: 4365190171859998959}
+    - renderer: {fileID: 4071322231728488206}
+    - renderer: {fileID: 3928764591077294609}
+    - renderer: {fileID: 1491383568991154528}
+    - renderer: {fileID: 2427949100217862369}
+    - renderer: {fileID: 1712257710930512278}
+    - renderer: {fileID: 8549820214972857801}
+    - renderer: {fileID: 4077796502711561462}
+    - renderer: {fileID: 7205547602281126025}
+    - renderer: {fileID: 7135951220269381845}
+    - renderer: {fileID: 2187732203583927283}
+    - renderer: {fileID: 1959586300536099703}
+    - renderer: {fileID: 1741657809748247942}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2649885929867248358}
+    - renderer: {fileID: 8532558389816179007}
+    - renderer: {fileID: 57720655642455658}
+    - renderer: {fileID: 4711735220282743743}
+    - renderer: {fileID: 709715467037982089}
+    - renderer: {fileID: 7249363704911030827}
+    - renderer: {fileID: 4462464085164154825}
+    - renderer: {fileID: 3594048847800064458}
+    - renderer: {fileID: 370021965134030271}
+  m_Enabled: 1
+--- !u!95 &1716891606384786509
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 64774fdf890a24048bd7d1e85c9163c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1716891605258716683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c8b60051336c84caeb7094824cf9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &6514918693547485482
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545136893528205833}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 3
+--- !u!1 &625624423475933585
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
