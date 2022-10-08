@@ -686,8 +686,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874fc15a74f99d542a4e2977e0eb06fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  npc_car: {fileID: 0}
+  player: {fileID: 545136893528205833, guid: 86cc6553d258b774c851b8f64f84f813, type: 3}
+  npc_car: {fileID: 8677500906063010704, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
+  test:
+    gridSize: {x: 6, y: 6}
+    cells:
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    cellSize: {x: 0, y: 0}
 --- !u!1001 &1716891606547016226
 PrefabInstance:
   m_ObjectHideFlags: 0
