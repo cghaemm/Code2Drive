@@ -10,7 +10,7 @@ namespace Array2DEditor
         public GameObject npc_car;
 
         [SerializeField]
-        private Array2D test = null;
+        private Array2D<int> test = null;
 
         // Start is called before the first frame update
         void Start()

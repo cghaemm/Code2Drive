@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Array2DEditor
 {
     [System.Serializable]
-    public class CellRow
+    public class CellRow<T>
     {
         [SerializeField]
-        private int[] row = new int[Consts.numColumns];
+        private T[] row = new T[Consts.defaultGridSize];
 
-        public int this[int i]
+        public T this[int i]
         {
             get => row[i];
             set => row[i] = value;
         }
-
-
     }
 }
-
