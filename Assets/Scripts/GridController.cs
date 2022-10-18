@@ -21,6 +21,9 @@ namespace Array2DEditor
         [SerializeField]
         private Array2DInt grid = null;
 
+        public float yBuffer = 0.23f;
+        public float yBufferGoal = 10f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -36,19 +39,35 @@ namespace Array2DEditor
 
             int[,] newGrid = grid.GetCells();
             // newGrid[y, x]
+            Debug.Log(newGrid);
 
-            for(int y = 0; y < numRows; y++)
+            for(int rowNum = 0; rowNum < numRows; rowNum++)
             {
-                for(int x = 0; x < numColumns; x++)
+                for(int colNum = 0; colNum < numColumns; colNum++)
                 {
-                    Debug.Log("[" + y + ", " + x + "]: " + newGrid[y, x]);
-                    if(newGrid[y,x] == 2)
+                    Debug.Log("[" + rowNum + ", " + colNum + "]: " + newGrid[rowNum, colNum]);
+                    
+                    Vector3 position = new Vector3(gameObject.transform.position.x - (width/2) + (width/(2*numRows)) + ((width/numRows)*rowNum), 
+                    gameObject.transform.position.y + yBuffer, gameObject.transform.position.z - (length/2) + (length/(2*numColumns)) + ((length/numColumns)*colNum));
+                    if(newGrid[rowNum, colNum] == 1)
                     {
-                        Vector3 position = new Vector3(gameObject.transform.position.x + ((width/numColumns)*x), 
-                        gameObject.transform.position.y, gameObject.transform.position.z + ((length/numRows)*y));
-                        
-                        GameObject car = Instantiate(npc_car, position, transform.rotation); 
-
+                        GameObject new_player_car = Instantiate(player, position, transform.rotation);
+                    }
+                    else if(newGrid[rowNum,colNum] == 2)
+                    {
+                        //Vector3 position = new Vector3(gameObject.transform.position.x - (width/2) + (width/(2*numRows)) + ((width/numRows)*rowNum), 
+                        //gameObject.transform.position.y + yBuffer, gameObject.transform.position.z - (length/2) + (length/(2*numColumns)) + ((length/numColumns)*colNum));
+                        GameObject new_npc_car = Instantiate(npc_car, position, transform.rotation); 
+                    }
+                    else if(newGrid[rowNum, colNum] == 3)
+                    {
+                        Quaternion goal_rotation = Quaternion.Euler(0, 180, 0);
+                        Vector3 goal_position = position + new Vector3(0, yBufferGoal, 0);
+                        GameObject new_goal = Instantiate(goal, goal_position, goal_rotation);
+                    }
+                    else if(newGrid[rowNum, colNum] == 4)
+                    {
+                        GameObject new_sports_car = Instantiate(sports_car, position, transform.rotation);
                     }
 
                 }

@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &254237457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3031657280914115522, guid: 2327b2c32cc89d94aad795e59badbbc9, type: 3}
-  m_PrefabInstance: {fileID: 3031657280731582675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1049348986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -545,13 +540,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608083107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -12.1735, y: 0.5, z: 0}
-  m_LocalScale: {x: 51, y: 0.5, z: 25}
+  m_LocalScale: {x: 25, y: 0.5, z: 51.000015}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!114 &1608083112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,17 +561,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 545136893528205833, guid: 86cc6553d258b774c851b8f64f84f813, type: 3}
   npc_car: {fileID: 8677500906063010704, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
-  goal: {fileID: 254237457}
+  goal: {fileID: 3031657280914115522, guid: 2327b2c32cc89d94aad795e59badbbc9, type: 3}
   sports_car: {fileID: 5638013955558124253, guid: 400fef125eb384f8d852ac60c3534422, type: 3}
   grid:
     gridSize: {x: 4, y: 5}
     cellSize: {x: 32, y: 16}
     cells:
-    - row: 02000000020000000200000002000000
+    - row: 03000000020000000200000002000000
     - row: 00000000000000000000000000000000
-    - row: 02000000000000000000000002000000
-    - row: 00000000000000000000000000000000
-    - row: 00000000000000000000000000000000
+    - row: 02000000000000000400000002000000
+    - row: 02000000000000000000000000000000
+    - row: 02000000040000000000000001000000
+  yBuffer: 0.23
+  yBufferGoal: 3
 --- !u!1001 &1716891606547016226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,6 +584,10 @@ PrefabInstance:
     - target: {fileID: 545136893528205833, guid: 86cc6553d258b774c851b8f64f84f813, type: 3}
       propertyPath: m_Name
       value: PlayerCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 545136893528205833, guid: 86cc6553d258b774c851b8f64f84f813, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3588224058596235290, guid: 86cc6553d258b774c851b8f64f84f813, type: 3}
       propertyPath: m_RootOrder
@@ -689,6 +690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 3031657280914115522, guid: 2327b2c32cc89d94aad795e59badbbc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2327b2c32cc89d94aad795e59badbbc9, type: 3}
 --- !u!1001 &8676594743424227663
@@ -701,6 +706,10 @@ PrefabInstance:
     - target: {fileID: 8677500906063010704, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
       propertyPath: m_Name
       value: NPC_Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677500906063010704, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8680751601348103968, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
       propertyPath: m_RootOrder
