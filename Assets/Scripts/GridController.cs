@@ -24,11 +24,14 @@ namespace Array2DEditor
         public float yBuffer = 0.23f;
         public float yBufferGoal = 10f;
 
+        private int numRows;
+        private int numColumns;
+
         // Start is called before the first frame update
         void Start()
         {
-            int numRows = grid.GridSize.y;
-            int numColumns = grid.GridSize.x;
+            numRows = grid.GridSize.y;
+            numColumns = grid.GridSize.x;
             Debug.Log("Number of Rows: " + numRows);
             Debug.Log("Number of Columns: " + numColumns);
 
@@ -52,6 +55,7 @@ namespace Array2DEditor
                     if(newGrid[rowNum, colNum] == 1)
                     {
                         GameObject new_player_car = Instantiate(player, position, transform.rotation);
+                        new_player_car.GetComponent<PlayerCar>().assignRoad(gameObject);
                     }
                     else if(newGrid[rowNum,colNum] == 2)
                     {
@@ -80,6 +84,16 @@ namespace Array2DEditor
         void Update()
         {
             
+        }
+
+        public int getNumRows()
+        {
+            return numRows;
+        }
+
+        public int getNumColumns()
+        {
+            return numColumns;
         }
     }
 }

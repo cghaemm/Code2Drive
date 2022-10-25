@@ -9,7 +9,8 @@ public class TreeBoundary : MonoBehaviour
     {
         if(other.gameObject.tag == "Tree")
         {
-            Debug.Log("Found Tree!");
+            //Debug.Log("Found Tree!");
+            other.gameObject.GetComponent<TreeMovement>().moveToStart();
         }
     }
 }

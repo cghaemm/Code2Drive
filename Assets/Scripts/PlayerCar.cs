@@ -2,180 +2,197 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCar : MonoBehaviour
-{
-    private Animator animator;
-    private bool turnLeftWithSignal;
-    private bool turnRightWithSignal;
 
-    // Start is called before the first frame update
-    void Start()
+namespace Array2DEditor {
+    public class PlayerCar : MonoBehaviour
     {
-        animator = GetComponent<Animator>();
+        private Animator animator;
+        private bool turnLeftWithSignal;
+        private bool turnRightWithSignal;
 
-        animator.SetBool("TurnRight", false);
-        animator.SetBool("TurnLeft", false);
+        private GameObject road;
 
-        animator.SetBool("LeftTurnSignal", false);
-        animator.SetBool("RightTurnSignal", false);
+        private float forwardDistance;
+        private float sideToSideDistance;
 
-        turnLeftWithSignal = false;
-        turnRightWithSignal = false;
-    }
+        private float speed = 0.05f;
+        private Rigidbody rb;
+        private Vector3 destination;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        // Start is called before the first frame update
+        void Start()
         {
-            turnLeft();
-            //Debug.Log(true);        // print true
-            //Debug.Log(!true);       // print false
+            animator = GetComponent<Animator>();
+
+            animator.SetBool("TurnRight", false);
+            animator.SetBool("TurnLeft", false);
+
+            animator.SetBool("LeftTurnSignal", false);
+            animator.SetBool("RightTurnSignal", false);
+
+            turnLeftWithSignal = false;
+            turnRightWithSignal = false;
+
+            rb = gameObject.GetComponent<Rigidbody>();
+
+            destination = new Vector3(transform.position.x,transform.position.y,transform.position.z);
         }
 
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        // Update is called once per frame
+        void Update()
         {
-            turnRight();
-/*
-            bool var1 = false;
-
-            if(var1 == true)
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Debug.Log("The variable is true");
+                turnLeft();
+                
             }
-            if(var1)
+
+            if(Input.GetKeyDown(KeyCode.RightArrow))
             {
-                Debug.Log("if(var1): The variable is true");
+                turnRight();
             }
 
-            if(var1 != true)
+            if(Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Debug.Log("The variable is false");
+                goStraight();
             }
-            if(!var1)
+
+            // Left Turn Signal
+            if(Input.GetKeyDown(KeyCode.Q))
             {
-                Debug.Log("if(!var1): The variable is false");
-            }*/
-        }
-
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            goStraight();
-        }
-
-        // Left Turn Signal
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            leftTurnSignal();
-        }
-
-        // Right Turn Signal
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-           rightTurnSignal();
-        }
-    }
-
-    public void turnLeft()
-    {
-        animator.SetBool("TurnLeft", true);
-        animator.SetBool("TurnRight", false);
-
-        // Playe is turning left while turn signal is on
-        if(animator.GetBool("LeftTurnSignal") == true)
-        {
-            turnLeftWithSignal = true;
-        }
-
-        if(turnRightWithSignal == true)
-        {
-            rightTurnSignal();
-        }
-    }
-
-    public void turnRight()
-    {
-        animator.SetBool("TurnRight", true);
-        animator.SetBool("TurnLeft", false);
-
-        // Player is turning right while turn signal is on
-        if(animator.GetBool("RightTurnSignal") == true)
-        {
-            turnRightWithSignal = true;
-        }
-
-        if(turnLeftWithSignal)
-        {
-            leftTurnSignal();
-        }
-    }
-
-    public void goStraight()
-    {
-        animator.SetBool("TurnRight", false);
-        animator.SetBool("TurnLeft", false);
-
-        if(turnLeftWithSignal == true)
-        {
-            leftTurnSignal();
-        }
-
-        if(turnRightWithSignal == true)
-        {
-            rightTurnSignal();
-        }
-    }
-
-    public void leftTurnSignal()
-    {
-        // Only turn left turn signal on if right turn signal is off
-        if(!animator.GetBool("RightTurnSignal"))
-        {
-            // Turn off turn signal if already on
-            if(animator.GetBool("LeftTurnSignal"))
-            {
-                animator.SetBool("LeftTurnSignal", false);
+                leftTurnSignal();
             }
-            // Turn on turn signal
-            else
+
+            // Right Turn Signal
+            if(Input.GetKeyDown(KeyCode.E))
             {
-                animator.SetBool("LeftTurnSignal", true);
-                // Player is turning left while the turn signal is on
-                if(animator.GetBool("TurnLeft") == true)
+                rightTurnSignal();
+            }
+            
+            
+            transform.position = Vector3.Lerp(transform.position, destination, speed);
+            Debug.Log(destination);
+
+        }
+
+        public void turnLeft()
+        {
+            animator.SetBool("TurnLeft", true);
+            animator.SetBool("TurnRight", false);
+
+            // Playe is turning left while turn signal is on
+            if(animator.GetBool("LeftTurnSignal") == true)
+            {
+                turnLeftWithSignal = true;
+            }
+
+            if(turnRightWithSignal == true)
+            {
+                rightTurnSignal();
+            }
+        }
+
+        public void turnRight()
+        {
+            animator.SetBool("TurnRight", true);
+            animator.SetBool("TurnLeft", false);
+
+            // Player is turning right while turn signal is on
+            if(animator.GetBool("RightTurnSignal") == true)
+            {
+                turnRightWithSignal = true;
+            }
+
+            if(turnLeftWithSignal)
+            {
+                leftTurnSignal();
+            }
+        }
+
+        public void goStraight()
+        {
+            animator.SetBool("TurnRight", false);
+            animator.SetBool("TurnLeft", false);
+
+            if(turnLeftWithSignal == true)
+            {
+                leftTurnSignal();
+            }
+
+            if(turnRightWithSignal == true)
+            {
+                rightTurnSignal();
+            }
+
+            Debug.Log("Move Forward");
+            destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);
+            Debug.Log(50);
+        }
+
+        public void leftTurnSignal()
+        {
+            // Only turn left turn signal on if right turn signal is off
+            if(!animator.GetBool("RightTurnSignal"))
+            {
+                // Turn off turn signal if already on
+                if(animator.GetBool("LeftTurnSignal"))
                 {
-                    turnLeftWithSignal = true;
+                    animator.SetBool("LeftTurnSignal", false);
+                }
+                // Turn on turn signal
+                else
+                {
+                    animator.SetBool("LeftTurnSignal", true);
+                    // Player is turning left while the turn signal is on
+                    if(animator.GetBool("TurnLeft") == true)
+                    {
+                        turnLeftWithSignal = true;
+                    }
                 }
             }
         }
-    }
 
-    public void rightTurnSignal()
-    {
-        // Only turn the right turn signal on if the left turn signal is off
-        if(!animator.GetBool("LeftTurnSignal"))
+        public void rightTurnSignal()
         {
-            // Turn off turn signal if already on
-            if(animator.GetBool("RightTurnSignal"))
+            // Only turn the right turn signal on if the left turn signal is off
+            if(!animator.GetBool("LeftTurnSignal"))
             {
-                animator.SetBool("RightTurnSignal", false);
-            }
-            // Turn on turn signal
-            else
-            {
-                animator.SetBool("RightTurnSignal", true);
-                // Player is turning right while the turn signal is on
-                if(animator.GetBool("TurnRight") == true)
+                // Turn off turn signal if already on
+                if(animator.GetBool("RightTurnSignal"))
                 {
-                    turnRightWithSignal = true;
+                    animator.SetBool("RightTurnSignal", false);
+                }
+                // Turn on turn signal
+                else
+                {
+                    animator.SetBool("RightTurnSignal", true);
+                    // Player is turning right while the turn signal is on
+                    if(animator.GetBool("TurnRight") == true)
+                    {
+                        turnRightWithSignal = true;
+                    }
                 }
             }
         }
+
+        public void assignRoad(GameObject road)
+        {
+            this.road = road;
+            int numColumns = road.GetComponent<GridController>().getNumColumns();
+            int numRows = road.GetComponent<GridController>().getNumRows();
+
+            float width = road.gameObject.transform.localScale.z;
+            float length = road.gameObject.transform.localScale.x;
+
+            forwardDistance = width/numRows;
+            sideToSideDistance = length/numColumns;
+        }
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
-
 }
