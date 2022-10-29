@@ -12,5 +12,10 @@ public class TreeBoundary : MonoBehaviour
             //Debug.Log("Found Tree!");
             other.gameObject.GetComponent<TreeMovement>().moveToStart();
         }
+
+        if(other.gameObject.tag == "Road Line")
+        {
+            other.gameObject.GetComponent<RoadLine>().moveToStart();
+        }
     }
 }

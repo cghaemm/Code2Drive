@@ -19,6 +19,11 @@ namespace Array2DEditor {
         private Rigidbody rb;
         private Vector3 destination;
 
+        [SerializeField]
+        private AnimationCurve _curve;
+        private float _target;
+        private float _current;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -69,9 +74,18 @@ namespace Array2DEditor {
                 rightTurnSignal();
             }
             
-            
-            transform.position = Vector3.Lerp(transform.position, destination, speed);
-            Debug.Log(destination);
+            if(transform.position == destination)
+            {
+                _target = 0;
+            }
+            else
+            {
+                _target = 1;
+            }
+            Debug.Log(_target);
+            _current = Mathf.MoveTowards(_current, _target, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, destination, _curve.Evaluate(_current));
+            //Debug.Log(destination);
 
         }
 
@@ -126,7 +140,7 @@ namespace Array2DEditor {
 
             Debug.Log("Move Forward");
             destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);
-            Debug.Log(50);
+            //Debug.Log(50);
         }
 
         public void leftTurnSignal()
