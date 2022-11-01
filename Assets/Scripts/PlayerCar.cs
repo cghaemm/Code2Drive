@@ -22,7 +22,7 @@ namespace Array2DEditor {
         [SerializeField]
         private AnimationCurve _curve;
         private float _target;
-        private float _current;
+        private float current;
 
         // Start is called before the first frame update
         void Start()
@@ -77,14 +77,16 @@ namespace Array2DEditor {
             if(transform.position == destination)
             {
                 _target = 0;
+                //Debug.Log("Target Changed to 0");
             }
             else
             {
                 _target = 1;
             }
-            Debug.Log(_target);
-            _current = Mathf.MoveTowards(_current, _target, speed * Time.deltaTime);
-            transform.position = Vector3.Lerp(transform.position, destination, _curve.Evaluate(_current));
+
+            //Debug.Log(_target);
+            current = Mathf.MoveTowards(current, _target, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, destination, _curve.Evaluate(current));
             //Debug.Log(destination);
 
         }
