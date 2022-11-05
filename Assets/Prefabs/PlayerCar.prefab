@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 5927209792349943030}
   m_Layer: 0
   m_Name: PlayerCar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -916,10 +916,19 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.47636116
+      value: 0.46456814
+      inSlope: 3.5279934
+      outSlope: 3.5279934
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11656667
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

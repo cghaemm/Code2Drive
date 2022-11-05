@@ -46,7 +46,7 @@ IDragHandler
         Debug.Log("OnBeginDrag");
         if(!inSlot)
         {
-            GameObject newClone = Instantiate(clone, transform.position, transform.rotation,canvas.transform);
+            GameObject newClone = Instantiate(clone, transform.position, transform.rotation, canvas.transform);
         }
         else
         {
