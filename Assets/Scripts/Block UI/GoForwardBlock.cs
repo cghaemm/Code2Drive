@@ -1,71 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
-public class GoForwardBlock : MonoBehaviour, IBlockInterface
-{
-
-    private bool finished;
-    private CanvasGroup canvasGroup;
-    private bool activate;
-    private GameObject player;
-
-    // Start is called before the first frame update
-    void Awake()
+namespace Array2DEditor {
+    public class GoForwardBlock : MonoBehaviour, IBlockInterface
     {
-        finished = false;
-        canvasGroup = GetComponent<CanvasGroup>();
-        activate = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        private bool finished;
+        private CanvasGroup canvasGroup;
+        private GameObject player;
 
-/*
-List Explanation:
+        // Start is called before the first frame update
+        void Awake()
+        {
+            finished = false;
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
 
-// This is an array
-String[] animals = {"pig", "cat", "dog"};
-Debug.Log(animals.length); // Get the length of an array in Java
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
 
-// This is a list
-ArrayList<String> animals = new ArrayList<String>();
-animals.add("pig");
-animals.add("cat");
-animals.add("dog");
+        // Activate player.goStraight()
+        // Add function to ForwardBlock script that updates finished status
+        //    - Use that function in PlayerCar Script when finished moving
+        //    
+        public async void BlockRun()
+        {
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            player.GetComponent<PlayerCar>().goStraight();
+            while(player.GetComponent<PlayerCar>().isMoving())
+            {
+                await Task.Yield();
+            }
+            finished = true;
+        }
 
-Debug.Log(animals[0]);
+        public bool getStatus()
+        {
+            return finished;
+        }
 
-for(int i = 0; i < animals.size(); i++)
-{
-    System.out.println(animals[i]);
-}
+        public void blockRaycast()
+        {
+            canvasGroup.blocksRaycasts = false;
+        }
 
-*/
-
-    public void BlockRun()
-    {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        activate = true;
-    }
-
-    public bool getStatus()
-    {
-        return finished;
-    }
-
-    public void blockRaycast()
-    {
-        canvasGroup.blocksRaycasts = false;
-    }
-
-    public void resetBlock()
-    {
-        finished = false;
-        canvasGroup.blocksRaycasts = true;
-        activate = false;
+        public void resetBlock()
+        {
+            finished = false;
+            canvasGroup.blocksRaycasts = true;
+        }
     }
 }

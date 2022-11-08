@@ -10,6 +10,8 @@ namespace Array2DEditor {
         private bool turnLeftWithSignal;
         private bool turnRightWithSignal;
 
+        private bool moving;
+
         private GameObject road;
 
         private float forwardDistance;
@@ -27,6 +29,8 @@ namespace Array2DEditor {
         // Start is called before the first frame update
         void Start()
         {
+            moving = false;
+
             animator = GetComponent<Animator>();
 
             animator.SetBool("TurnRight", false);
@@ -74,9 +78,15 @@ namespace Array2DEditor {
                 rightTurnSignal();
             }
             
+            // Movement Stuff Below Here
             if(transform.position == destination)
             {
-                _target = 0;
+                //_target = 0;
+                current = 0;
+                if(isMoving() == true)
+                {
+                    finishedMoving();
+                }
                 //Debug.Log("Target Changed to 0");
             }
             else
@@ -127,6 +137,8 @@ namespace Array2DEditor {
 
         public void goStraight()
         {
+            moving = true;
+
             animator.SetBool("TurnRight", false);
             animator.SetBool("TurnLeft", false);
 
@@ -141,8 +153,8 @@ namespace Array2DEditor {
             }
 
             Debug.Log("Move Forward");
-            destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);
-            //Debug.Log(50);
+            destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);            
+        
         }
 
         public void leftTurnSignal()
@@ -204,8 +216,15 @@ namespace Array2DEditor {
             sideToSideDistance = length/numColumns;
         }
 
+        public bool isMoving()
+        {
+            return moving;
+        }
 
-
+        public void finishedMoving()
+        {
+            moving = false;
+        }
 
 
 
