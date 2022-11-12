@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 
 namespace Array2DEditor {
-    public class GoForwardBlock : MonoBehaviour, IBlockInterface
+    public class LeftTurnSignal : MonoBehaviour, IBlockInterface
     {
 
         private bool finished;
@@ -24,7 +24,7 @@ namespace Array2DEditor {
         public async void BlockRun()
         {
             player = GameObject.FindGameObjectsWithTag("Player")[0];
-            player.GetComponent<PlayerCar>().goStraight();
+            player.GetComponent<PlayerCar>().leftTurnSignal();
             
             try{
                 while(player.GetComponent<PlayerCar>().isMoving())

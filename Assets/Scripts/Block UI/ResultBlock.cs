@@ -76,15 +76,24 @@ public class ResultBlock : MonoBehaviour, IDropHandler
         // Runs every block in our ResultBlock
         for(int i = 0; i < blocks.Count; i++)
         {
-            blocks[i].GetComponent<IBlockInterface>().BlockRun();
-            while(!blocks[i].GetComponent<IBlockInterface>().getStatus())
+            try
             {
-                await Task.Yield();
+                blocks[i].GetComponent<IBlockInterface>().BlockRun();
+                while(!blocks[i].GetComponent<IBlockInterface>().getStatus())
+                {
+                    await Task.Yield();
+                }
+                Debug.Log("GameObject: " + blocks[i]);
             }
-            Debug.Log("GameObject: " + blocks[i]);
+            catch (MissingReferenceException e)
+            {
+                Debug.Log(e);
+                Debug.Log("ERROR OCCURED IN RESULT BLOCK Run()");
+            }
         }
 
         // Loops through every block in our ResultBlock and resets them
+        // Null Reference Exception sometimes occurs here
         for(int i = 0; i < blocks.Count; i++)
         {
             blocks[i].GetComponent<IBlockInterface>().resetBlock();

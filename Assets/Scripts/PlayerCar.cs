@@ -26,6 +26,9 @@ namespace Array2DEditor {
         private float _target;
         private float current;
 
+        private const float TURN_SIGNAL_TIMER_MAX = 2f;
+        private float turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -86,6 +89,7 @@ namespace Array2DEditor {
                 if(isMoving() == true)
                 {
                     finishedMoving();
+                    Debug.Log("Finished Moving");
                 }
                 //Debug.Log("Target Changed to 0");
             }
@@ -99,6 +103,13 @@ namespace Array2DEditor {
             transform.position = Vector3.Lerp(transform.position, destination, _curve.Evaluate(current));
             //Debug.Log(destination);
 
+
+            // Turn Signal Timer Functionality
+            if(animator.GetBool("LeftTurnSignal") || animator.GetBool("RightTurnSignal"))
+            {
+                turnSignalTimer -= Time.deltaTime;
+            }
+
         }
 
         public void turnLeft()
@@ -106,7 +117,7 @@ namespace Array2DEditor {
             animator.SetBool("TurnLeft", true);
             animator.SetBool("TurnRight", false);
 
-            // Playe is turning left while turn signal is on
+            // Player is turning left while turn signal is on
             if(animator.GetBool("LeftTurnSignal") == true)
             {
                 turnLeftWithSignal = true;
@@ -166,6 +177,7 @@ namespace Array2DEditor {
                 if(animator.GetBool("LeftTurnSignal"))
                 {
                     animator.SetBool("LeftTurnSignal", false);
+                    turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
                 }
                 // Turn on turn signal
                 else
@@ -189,6 +201,7 @@ namespace Array2DEditor {
                 if(animator.GetBool("RightTurnSignal"))
                 {
                     animator.SetBool("RightTurnSignal", false);
+                    turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
                 }
                 // Turn on turn signal
                 else
@@ -224,6 +237,21 @@ namespace Array2DEditor {
         public void finishedMoving()
         {
             moving = false;
+        }
+
+        public bool turnSignalFinished()
+        {
+            return turnSignalTimer <= 0;
+            // Commented code below does the same thing
+            /*
+            if(turnSignalTimer <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }*/
         }
 
 
