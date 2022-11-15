@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 70894368}
   - component: {fileID: 70894367}
   - component: {fileID: 70894366}
+  - component: {fileID: 70894369}
   - component: {fileID: 70894365}
   m_Layer: 5
   m_Name: Turn_Left
@@ -297,6 +298,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70894363}
   m_CullTransparentMesh: 1
+--- !u!114 &70894369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70894363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6707a81610e2fbb46a23eab0c72e207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &80604335
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +729,7 @@ GameObject:
   - component: {fileID: 373568789}
   - component: {fileID: 373568788}
   - component: {fileID: 373568787}
+  - component: {fileID: 373568791}
   m_Layer: 5
   m_Name: Turn_Right
   m_TagString: Untagged
@@ -805,6 +819,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373568785}
   m_CullTransparentMesh: 1
+--- !u!114 &373568791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373568785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0996c81912f527f4eacf9e7caa4991ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &471058640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1605,7 @@ GameObject:
   - component: {fileID: 1209237919}
   - component: {fileID: 1209237918}
   - component: {fileID: 1209237917}
+  - component: {fileID: 1209237921}
   m_Layer: 5
   m_Name: Right_Turn_Signal
   m_TagString: Untagged
@@ -1668,6 +1695,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209237915}
   m_CullTransparentMesh: 1
+--- !u!114 &1209237921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209237915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e2009ed17c8d740bbb70155522cffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1259362368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2128,7 @@ GameObject:
   - component: {fileID: 1655421742}
   - component: {fileID: 1655421741}
   - component: {fileID: 1655421740}
+  - component: {fileID: 1655421744}
   m_Layer: 5
   m_Name: Left_Turn_Signal
   m_TagString: Untagged
@@ -2178,6 +2218,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655421738}
   m_CullTransparentMesh: 1
+--- !u!114 &1655421744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655421738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8654f3a7e0364d4b98a58560e8a4718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1698840612
 PrefabInstance:
   m_ObjectHideFlags: 0

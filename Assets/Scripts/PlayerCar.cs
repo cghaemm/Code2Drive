@@ -27,11 +27,13 @@ namespace Array2DEditor {
         private float current;
 
         private const float TURN_SIGNAL_TIMER_MAX = 2f;
-        private float turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
+        private float turnSignalTimer;
 
         // Start is called before the first frame update
         void Start()
         {
+            turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
+
             moving = false;
 
             animator = GetComponent<Animator>();
@@ -90,6 +92,8 @@ namespace Array2DEditor {
                 {
                     finishedMoving();
                     Debug.Log("Finished Moving");
+                    animator.SetBool("TurnLeft", false);
+                    animator.SetBool("TurnRight", false);
                 }
                 //Debug.Log("Target Changed to 0");
             }
@@ -127,6 +131,10 @@ namespace Array2DEditor {
             {
                 rightTurnSignal();
             }
+
+            moving = true;
+            destination = new Vector3(transform.position.x, transform.position.y,
+            transform.position.z - sideToSideDistance);
         }
 
         public void turnRight()
@@ -144,6 +152,11 @@ namespace Array2DEditor {
             {
                 leftTurnSignal();
             }
+
+            
+            moving = true;
+            destination = new Vector3(transform.position.x, transform.position.y,
+            transform.position.z + sideToSideDistance);
         }
 
         public void goStraight()
@@ -241,7 +254,22 @@ namespace Array2DEditor {
 
         public bool turnSignalFinished()
         {
-            return turnSignalTimer <= 0;
+            // True || True = True
+            // True || False = True
+            // False || True = True
+            // False || False = False
+
+            // False = False
+            // True = True
+            // !False = True
+            // !True = False
+
+            // False && False = False
+            // False && True = False
+            // True && False = False
+            // True && True = True
+            return turnSignalTimer <= 0 || (!animator.GetBool("LeftTurnSignal") 
+            && !animator.GetBool("RightTurnSignal"));
             // Commented code below does the same thing
             /*
             if(turnSignalTimer <= 0)
