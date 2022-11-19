@@ -178,7 +178,27 @@ namespace Array2DEditor {
 
             Debug.Log("Move Forward");
             destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);            
-        
+        }
+
+        public void goBack()
+        {
+            moving = true;
+
+            animator.SetBool("TurnRight", false);
+            animator.SetBool("TurnLeft", false);
+
+            if(turnLeftWithSignal == true)
+            {
+                leftTurnSignal();
+            }
+
+            if(turnRightWithSignal == true)
+            {
+                rightTurnSignal();
+            }
+
+            Debug.Log("Move Backward");
+            destination = new Vector3(transform.position.x+forwardDistance, transform.position.y, transform.position.z);
         }
 
         public void leftTurnSignal()
