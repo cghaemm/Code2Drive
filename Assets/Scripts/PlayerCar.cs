@@ -135,6 +135,8 @@ namespace Array2DEditor {
             moving = true;
             destination = new Vector3(transform.position.x, transform.position.y,
             transform.position.z - sideToSideDistance);
+
+            road.GetComponent<GridController>().playerCarLeft();
         }
 
         public void turnRight()
@@ -157,6 +159,8 @@ namespace Array2DEditor {
             moving = true;
             destination = new Vector3(transform.position.x, transform.position.y,
             transform.position.z + sideToSideDistance);
+
+            road.GetComponent<GridController>().playerCarRight();
         }
 
         public void goStraight()
@@ -178,6 +182,8 @@ namespace Array2DEditor {
 
             Debug.Log("Move Forward");
             destination = new Vector3(transform.position.x-forwardDistance, transform.position.y, transform.position.z);            
+        
+            road.GetComponent<GridController>().playerCarForward();
         }
 
         public void goBack()
@@ -199,6 +205,9 @@ namespace Array2DEditor {
 
             Debug.Log("Move Backward");
             destination = new Vector3(transform.position.x+forwardDistance, transform.position.y, transform.position.z);
+            
+            
+            road.GetComponent<GridController>().playerCarBackward();
         }
 
         public void leftTurnSignal()
