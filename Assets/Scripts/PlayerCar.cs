@@ -137,6 +137,12 @@ namespace Array2DEditor {
             transform.position.z - sideToSideDistance);
 
             road.GetComponent<GridController>().playerCarLeft();
+            
+            if(animator.GetBool("LeftTurnSignal") == false)
+            {
+                // check npc car behind
+                // call function here
+            }
         }
 
         public void turnRight()
@@ -311,7 +317,13 @@ namespace Array2DEditor {
             }*/
         }
 
-
+        void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag == "car")
+            {
+                Debug.Log("The Player crashed into a car");
+            }
+        }
 
 
     }

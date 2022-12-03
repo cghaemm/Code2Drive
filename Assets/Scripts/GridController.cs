@@ -83,6 +83,7 @@ namespace Array2DEditor
                         //gameObject.transform.position.y + yBuffer, gameObject.transform.position.z - (length/2) + (length/(2*numColumns)) + ((length/numColumns)*colNum));
                         GameObject new_npc_car = Instantiate(npc_car, position, transform.rotation);
                         carGrid[rowNum, colNum] = new_npc_car;
+                        new_npc_car.GetComponent<NPC_CAR>().assignRoad(gameObject);
                     }
                     else if(newGrid[rowNum, colNum] == 3)
                     {
@@ -239,6 +240,18 @@ namespace Array2DEditor
                 }
                 str += "]";
                 Debug.Log(str);
+            }
+        }
+
+        // function assumes that player did not have their turn signal on
+        // positions are [y, x]
+        public void checkBehindPC()
+        {
+            if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]].gameObject.tag == "car")
+            {
+                // There is a car behind the player
+                carGrid[playerCarPosition[0]+1, playerCarPosition[1]].
+                gameObject.GetComponent<NPC_CAR>().moveForward();
             }
         }
     }
