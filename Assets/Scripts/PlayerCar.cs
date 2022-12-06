@@ -88,6 +88,19 @@ namespace Array2DEditor {
             {
                 //_target = 0;
                 current = 0;
+
+                // Check cars to left of player and check if left turn signal is on
+                if(animator.GetBool("LeftTurnSignal") == true)
+                {
+                    road.GetComponent<GridController>().checkLeftPC();
+                }
+
+                // Check cars to right of player and check if right turn signal is on
+                if(animator.GetBool("RightTurnSignal") == true)
+                {
+                    road.GetComponent<GridController>().checkRightPC();
+                }
+
                 if(isMoving() == true)
                 {
                     finishedMoving();
@@ -140,8 +153,7 @@ namespace Array2DEditor {
             
             if(animator.GetBool("LeftTurnSignal") == false)
             {
-                // check npc car behind
-                // call function here
+                road.GetComponent<GridController>().checkBehindPC();
             }
         }
 
@@ -167,6 +179,11 @@ namespace Array2DEditor {
             transform.position.z + sideToSideDistance);
 
             road.GetComponent<GridController>().playerCarRight();
+
+            if(animator.GetBool("RightTurnSignal") == false)
+            {
+                road.GetComponent<GridController>().checkBehindPC();
+            }
         }
 
         public void goStraight()
@@ -289,32 +306,8 @@ namespace Array2DEditor {
 
         public bool turnSignalFinished()
         {
-            // True || True = True
-            // True || False = True
-            // False || True = True
-            // False || False = False
-
-            // False = False
-            // True = True
-            // !False = True
-            // !True = False
-
-            // False && False = False
-            // False && True = False
-            // True && False = False
-            // True && True = True
             return turnSignalTimer <= 0 || (!animator.GetBool("LeftTurnSignal") 
             && !animator.GetBool("RightTurnSignal"));
-            // Commented code below does the same thing
-            /*
-            if(turnSignalTimer <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }*/
         }
 
         void OnCollisionEnter(Collision collision)

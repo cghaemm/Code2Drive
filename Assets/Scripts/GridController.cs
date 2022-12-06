@@ -82,8 +82,8 @@ namespace Array2DEditor
                         //Vector3 position = new Vector3(gameObject.transform.position.x - (width/2) + (width/(2*numRows)) + ((width/numRows)*rowNum), 
                         //gameObject.transform.position.y + yBuffer, gameObject.transform.position.z - (length/2) + (length/(2*numColumns)) + ((length/numColumns)*colNum));
                         GameObject new_npc_car = Instantiate(npc_car, position, transform.rotation);
-                        carGrid[rowNum, colNum] = new_npc_car;
                         new_npc_car.GetComponent<NPC_CAR>().assignRoad(gameObject);
+                        carGrid[rowNum, colNum] = new_npc_car;
                     }
                     else if(newGrid[rowNum, colNum] == 3)
                     {
@@ -212,20 +212,6 @@ namespace Array2DEditor
 
         }
 
-
-        // [[1, 2, 3],
-        // [4, 5, 6],
-        // [7, 8, 9]]
-
-    /*
-    //            0  1  2  3  4
-    int[] list = {1, 2, 3, 4, 5};
-    for (int i = 0; i < list.GetLength; i++)
-    {
-        Debug.Log(list[i]);
-    }
-
-    */
         // Assume testGrid only tests carGrid/grid of GameObjects
         public void testGrid<T>(T[,] testGrid)
         {
@@ -247,12 +233,47 @@ namespace Array2DEditor
         // positions are [y, x]
         public void checkBehindPC()
         {
-            if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]].gameObject.tag == "car")
+            if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]] != null &&
+                carGrid[playerCarPosition[0]+1, playerCarPosition[1]].gameObject.tag == "car")
             {
                 // There is a car behind the player
                 carGrid[playerCarPosition[0]+1, playerCarPosition[1]].
                 gameObject.GetComponent<NPC_CAR>().moveForward();
             }
+        }
+
+        public void checkLeftPC()
+        {
+            // Checks if car is to left of player
+            if(carGrid[playerCarPosition[0], playerCarPosition[1]-1] != null
+            && carGrid[playerCarPosition[0], playerCarPosition[1]-1].gameObject.tag == "car")
+            {
+                // CAR to left of player; now check to make sure no car is behind that car
+                if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]-1] == null)
+                {
+                    
+                    GameObject npcCar = carGrid[playerCarPosition[0], playerCarPosition[1]-1];    
+                    carGrid[playerCarPosition[0]+1, playerCarPosition[1]-1] = npcCar;
+                    carGrid[playerCarPosition[0], playerCarPosition[1]-1] = null;
+                    npcCar.GetComponent<NPC_CAR>().moveBackward();
+                }
+            }
+        }
+
+        public void checkRightPC()
+        {
+            if(carGrid[playerCarPosition[0], playerCarPosition[1]+1] != null &&
+            carGrid[playerCarPosition[0], playerCarPosition[1]+1].gameObject.tag == "car")
+            {
+                if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]+1] == null)
+                {
+                    GameObject npcCar = carGrid[playerCarPosition[0], playerCarPosition[1]+1];    
+                    carGrid[playerCarPosition[0]+1, playerCarPosition[1]+1] = npcCar;
+                    carGrid[playerCarPosition[0], playerCarPosition[1]+1] = null;
+                    npcCar.GetComponent<NPC_CAR>().moveBackward();
+                }
+            }
+
         }
     }
 }

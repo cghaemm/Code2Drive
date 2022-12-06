@@ -44,7 +44,6 @@ namespace Array2DEditor
                     finishedMoving();
                     Debug.Log("Finished Moving");
                 }
-                //Debug.Log("Target Changed to 0");
             }
             else
             {

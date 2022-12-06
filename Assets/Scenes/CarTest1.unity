@@ -2970,6 +2970,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4704601505610647997, guid: 354e9939e3f4d3449bc5b34e728aca82, type: 3}
+      propertyPath: grid.cells.Array.data[4].row.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704601505610647997, guid: 354e9939e3f4d3449bc5b34e728aca82, type: 3}
+      propertyPath: grid.cells.Array.data[4].row.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5591085189887326022, guid: 354e9939e3f4d3449bc5b34e728aca82, type: 3}
       propertyPath: m_Name
       value: Road Objects
