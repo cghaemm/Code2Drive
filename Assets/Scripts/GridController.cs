@@ -231,9 +231,24 @@ namespace Array2DEditor
 
         // function assumes that player did not have their turn signal on
         // positions are [y, x]
+        //              0      1      2
+        // animals = ["dog", "cow", "pig"]   // length of list is 3
+        // System.out.println(animals[0]); // dog
+        //              0      1      2      3       4
+        // animals = ["dog", "cow", "pig", "cat", "horse"] // length of list is 5
+        // animals.length
+
+        // public String getAnimal(int index)
+        // {    
+        //      if(index <= animals.length-1 && index >= 0)
+        //      {
+        //          return animals[index];
+        //      }
+        // }
         public void checkBehindPC()
         {
-            if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]] != null &&
+            if((carGrid.GetLength(0)-1) >= (playerCarPosition[0]+1) &&
+                carGrid[playerCarPosition[0]+1, playerCarPosition[1]] != null &&
                 carGrid[playerCarPosition[0]+1, playerCarPosition[1]].gameObject.tag == "car")
             {
                 // There is a car behind the player
@@ -245,11 +260,13 @@ namespace Array2DEditor
         public void checkLeftPC()
         {
             // Checks if car is to left of player
-            if(carGrid[playerCarPosition[0], playerCarPosition[1]-1] != null
+            if((playerCarPosition[1]-1) >= 0 &&
+            carGrid[playerCarPosition[0], playerCarPosition[1]-1] != null
             && carGrid[playerCarPosition[0], playerCarPosition[1]-1].gameObject.tag == "car")
             {
                 // CAR to left of player; now check to make sure no car is behind that car
-                if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]-1] == null)
+                if((carGrid.GetLength(0)-1) >= (playerCarPosition[0]+1) &&
+                    carGrid[playerCarPosition[0]+1, playerCarPosition[1]-1] == null)
                 {
                     
                     GameObject npcCar = carGrid[playerCarPosition[0], playerCarPosition[1]-1];    
@@ -262,10 +279,12 @@ namespace Array2DEditor
 
         public void checkRightPC()
         {
-            if(carGrid[playerCarPosition[0], playerCarPosition[1]+1] != null &&
+            if((carGrid.GetLength(1)-1) >= (playerCarPosition[1]+1) &&
+            carGrid[playerCarPosition[0], playerCarPosition[1]+1] != null &&
             carGrid[playerCarPosition[0], playerCarPosition[1]+1].gameObject.tag == "car")
             {
-                if(carGrid[playerCarPosition[0]+1, playerCarPosition[1]+1] == null)
+                if((carGrid.GetLength(0)-1) >= (playerCarPosition[0]+1) &&
+                    carGrid[playerCarPosition[0]+1, playerCarPosition[1]+1] == null)
                 {
                     GameObject npcCar = carGrid[playerCarPosition[0], playerCarPosition[1]+1];    
                     carGrid[playerCarPosition[0]+1, playerCarPosition[1]+1] = npcCar;

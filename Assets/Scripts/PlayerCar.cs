@@ -196,11 +196,13 @@ namespace Array2DEditor {
             if(turnLeftWithSignal == true)
             {
                 leftTurnSignal();
+                turnLeftWithSignal = false;
             }
 
             if(turnRightWithSignal == true)
             {
                 rightTurnSignal();
+                turnRightWithSignal = false;
             }
 
             Debug.Log("Move Forward");
@@ -219,11 +221,13 @@ namespace Array2DEditor {
             if(turnLeftWithSignal == true)
             {
                 leftTurnSignal();
+                turnLeftWithSignal = false;
             }
 
             if(turnRightWithSignal == true)
             {
                 rightTurnSignal();
+                turnRightWithSignal = false;
             }
 
             Debug.Log("Move Backward");
