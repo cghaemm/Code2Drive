@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Array2DEditor
 {
@@ -293,6 +294,11 @@ namespace Array2DEditor
                 }
             }
 
+        }
+
+        public void restartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
