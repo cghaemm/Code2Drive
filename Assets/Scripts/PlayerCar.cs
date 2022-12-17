@@ -319,6 +319,7 @@ namespace Array2DEditor {
             if(collision.gameObject.tag == "car")
             {
                 Debug.Log("The Player crashed into a car");
+                road.GetComponent<GridController>().crashOccured();
             }
         }
 

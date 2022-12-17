@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 20bad6f9dc5a1df488c91ef30fea4aba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuTest.unity
     guid: 623f0df1ad17eea4aa45a87fe0602652
+  - enabled: 1
+    path: Assets/Scenes/CarTest1.unity
+    guid: b03c127e9798f1f4e8208654a7a39985
   m_configObjects: {}

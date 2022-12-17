@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Array2DEditor
 {
@@ -30,6 +29,9 @@ namespace Array2DEditor
 
         private GameObject[,] carGrid;
         private int[] playerCarPosition = new int[2];
+
+        [SerializeField]
+        private GameObject modal_window;
 
         // Start is called before the first frame update
 
@@ -102,7 +104,9 @@ namespace Array2DEditor
                 }
             }
             testGrid<GameObject>(carGrid);
-            
+
+            modal_window = Instantiate(modal_window);
+            modal_window.SetActive(false);
         }
 
         // Update is called once per frame
@@ -121,25 +125,6 @@ namespace Array2DEditor
             return numColumns;
         }
 
-/*
-        public void playerCarForward()
-        {
-            int curYPosition = playerCarPosition[1];
-            if((curYPosition + 1) < carGrid.GetLength(0) && 
-                carGrid[playerCarPosition[0], curYPosition+1] == null)
-            {
-                GameObject playerCar = carGrid[playerCarPosition[0], curYPosition];
-                carGrid[playerCarPosition[0], curYPosition+1] = playerCar;
-                carGrid[playerCarPosition[0], curYPosition] = null;
-                playerCarPosition[1] = curYPosition + 1;
-            }
-            else
-            {
-                Debug.Log("CAR CRASHED");
-                // Add modal window here later
-            }
-        }*/
-
         // Y and X positions of grid are inverted
         public void playerCarForward()
         {
@@ -155,6 +140,7 @@ namespace Array2DEditor
             {
                 Debug.Log("CAR MOVED TOO FAR FORWARD");
                 // Add modal window here later
+                modal_window.SetActive(true);
             }
 
             Debug.Log("Player Car Position: " + playerCarPosition[0] + ", " + playerCarPosition[1]);
@@ -175,6 +161,7 @@ namespace Array2DEditor
             {
                 Debug.Log("CAR WENT TOO FAR BACKWARD");
                 // Add modal window here later
+                modal_window.SetActive(true);
             }
 
             Debug.Log("Player Car Position: " + playerCarPosition[0] + ", " + playerCarPosition[1]);
@@ -193,6 +180,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE LEFT");
+                modal_window.SetActive(true);
             }
         }
 
@@ -209,6 +197,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE RIGHT");
+                modal_window.SetActive(true);
             }
 
         }
@@ -293,12 +282,11 @@ namespace Array2DEditor
                     npcCar.GetComponent<NPC_CAR>().moveBackward();
                 }
             }
-
         }
 
-        public void restartLevel()
+        public void crashOccured()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            modal_window.SetActive(true);
         }
     }
 }
