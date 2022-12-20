@@ -12,11 +12,13 @@ namespace Array2DEditor
         // 2 is npc_car
         // 3 is goal
         // 4 is sports_car;
+        // 5 is truck
 
         public GameObject player;
         public GameObject npc_car;
         public GameObject goal;
         public GameObject sports_car;
+        public GameObject truck;
 
         [SerializeField]
         private Array2DInt grid = null;
@@ -100,13 +102,18 @@ namespace Array2DEditor
                         GameObject new_sports_car = Instantiate(sports_car, position, transform.rotation);
                         carGrid[rowNum, colNum] = new_sports_car;
                     }
+                    else if(newGrid[rowNum, colNum] == 5)
+                    {
+                        GameObject new_truck = Instantiate(truck, position, transform.rotation);
+                        carGrid[rowNum, colNum] = new_truck;
+                    }
 
                 }
             }
             testGrid<GameObject>(carGrid);
 
             modal_window = Instantiate(modal_window);
-            modal_window.SetActive(false);
+            //modal_window.SetActive(false);
         }
 
         // Update is called once per frame
@@ -140,7 +147,7 @@ namespace Array2DEditor
             {
                 Debug.Log("CAR MOVED TOO FAR FORWARD");
                 // Add modal window here later
-                modal_window.SetActive(true);
+                modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
             Debug.Log("Player Car Position: " + playerCarPosition[0] + ", " + playerCarPosition[1]);
@@ -161,7 +168,7 @@ namespace Array2DEditor
             {
                 Debug.Log("CAR WENT TOO FAR BACKWARD");
                 // Add modal window here later
-                modal_window.SetActive(true);
+                modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
             Debug.Log("Player Car Position: " + playerCarPosition[0] + ", " + playerCarPosition[1]);
@@ -180,7 +187,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE LEFT");
-                modal_window.SetActive(true);
+                modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
         }
 
@@ -197,7 +204,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE RIGHT");
-                modal_window.SetActive(true);
+                modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
         }
@@ -220,21 +227,6 @@ namespace Array2DEditor
         }
 
         // function assumes that player did not have their turn signal on
-        // positions are [y, x]
-        //              0      1      2
-        // animals = ["dog", "cow", "pig"]   // length of list is 3
-        // System.out.println(animals[0]); // dog
-        //              0      1      2      3       4
-        // animals = ["dog", "cow", "pig", "cat", "horse"] // length of list is 5
-        // animals.length
-
-        // public String getAnimal(int index)
-        // {    
-        //      if(index <= animals.length-1 && index >= 0)
-        //      {
-        //          return animals[index];
-        //      }
-        // }
         public void checkBehindPC()
         {
             if((carGrid.GetLength(0)-1) >= (playerCarPosition[0]+1) &&
@@ -286,7 +278,12 @@ namespace Array2DEditor
 
         public void crashOccured()
         {
-            modal_window.SetActive(true);
+            modal_window.GetComponent<ModalWindow>().playerCrashed();
+        }
+
+        public void goalReached()
+        {
+            modal_window.GetComponent<ModalWindow>().finishedLevel();
         }
     }
 }

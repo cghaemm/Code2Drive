@@ -323,6 +323,15 @@ namespace Array2DEditor {
             }
         }
 
+        void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.tag == "Goal")
+            {
+                Debug.Log("The Player won");
+                road.GetComponent<GridController>().goalReached();
+            }
+        }
+
 
     }
 }
