@@ -13,9 +13,8 @@ public class ModalWindow : MonoBehaviour
     private const int MAIN_MENU_INDEX = 0;
 
     [SerializeField] private GameObject restart_button;
-
     [SerializeField] private GameObject next_button;
-
+    [SerializeField] private TextMeshProUGUI headingText;
     [SerializeField] private TextMeshProUGUI modalText;
 
     // Start is called before the first frame update
@@ -37,6 +36,7 @@ public class ModalWindow : MonoBehaviour
     {
         // Add functions to change text later
         lost();
+        headingText.text = "CRASHED!";
     }
 
     public void playerOffroad()

@@ -316,7 +316,7 @@ namespace Array2DEditor {
 
         void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.tag == "car")
+            if(collision.gameObject.tag == "car" || collision.gameObject.tag == "Truck")
             {
                 Debug.Log("The Player crashed into a car");
                 road.GetComponent<GridController>().crashOccured();

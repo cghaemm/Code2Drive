@@ -104,7 +104,8 @@ namespace Array2DEditor
                     }
                     else if(newGrid[rowNum, colNum] == 5)
                     {
-                        GameObject new_truck = Instantiate(truck, position, transform.rotation);
+                        Vector3 truckPosition = position + new Vector3(width/(numRows*1.7f), -0.85f, 0);
+                        GameObject new_truck = Instantiate(truck, truckPosition, transform.rotation);
                         carGrid[rowNum, colNum] = new_truck;
                     }
 
@@ -238,6 +239,43 @@ namespace Array2DEditor
                 gameObject.GetComponent<NPC_CAR>().moveForward();
             }
         }
+
+        /*
+        class Pet {
+            String name;
+            int age;
+
+            Pet(String newName, int newAge) {
+                name = newName;
+                age = newAge;
+            }
+
+            void pee() {
+                System.out.println(name + " peed");
+            }
+        }
+
+        class Dog extends Pet {
+            String breed;
+
+            void sit() {
+                System.out.println(super.name + " is sitting");
+            }
+        }
+
+        class Cat extends Pet {
+            String breed;
+
+            void sleep() {
+                System.out.println(super.name + " is sleeping");
+            }
+        }
+
+        Pet myDog = new Pet();
+        System.out.println(myDog.name); // "" or null
+        System.out.println(myDog.age); // 0 or null
+        myDog.pee(); //  peed
+        */
 
         public void checkLeftPC()
         {

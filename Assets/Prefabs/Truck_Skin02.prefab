@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 761219246388295125}
   m_Layer: 0
   m_Name: Truck_Skin02
-  m_TagString: car
+  m_TagString: Truck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 3080516496834167036}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -16, y: -0.67010486, z: -2.7}
-  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
+  m_LocalScale: {x: 0.58, y: 0.58, z: 0.65}
   m_Children:
   - {fileID: 6795999641912114607}
   - {fileID: 8371843198284417770}
