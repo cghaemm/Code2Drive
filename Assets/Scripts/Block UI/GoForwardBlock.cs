@@ -38,7 +38,6 @@ namespace Array2DEditor {
                 Debug.Log(e);
                 Debug.Log("ERROR OCCURED IN BlockRun()");
             }
-            
         }
 
         public bool getStatus()

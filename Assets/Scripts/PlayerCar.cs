@@ -29,9 +29,15 @@ namespace Array2DEditor {
         private const float TURN_SIGNAL_TIMER_MAX = 2f;
         private float turnSignalTimer;
 
+        private bool crashed;
+        private bool finished;
+
         // Start is called before the first frame update
         void Start()
         {
+            crashed = false;
+            finished = false;
+
             turnSignalTimer = TURN_SIGNAL_TIMER_MAX;
 
             moving = false;
@@ -320,7 +326,19 @@ namespace Array2DEditor {
             {
                 Debug.Log("The Player crashed into a car");
                 road.GetComponent<GridController>().crashOccured();
+                playerCrashed();
             }
+        }
+
+        private void playerCrashed() 
+        {
+            crashed = true;
+            destination = new Vector3(transform.position.x, 
+                transform.position.y, transform.position.z);
+        }
+
+        public bool getCrashed() {
+            return crashed;
         }
 
         void OnTriggerEnter(Collider other)
@@ -329,7 +347,18 @@ namespace Array2DEditor {
             {
                 Debug.Log("The Player won");
                 road.GetComponent<GridController>().goalReached();
+                playerWon();
             }
+        }
+
+        private void playerWon() {
+            finished = true;
+            destination = new Vector3(transform.position.x, transform.position.y,
+                transform.position.z);
+        }
+
+        public bool getFinished() {
+            return finished;
         }
 
 

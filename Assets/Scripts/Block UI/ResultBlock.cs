@@ -5,102 +5,110 @@ using UnityEngine.EventSystems;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
-public class ResultBlock : MonoBehaviour, IDropHandler
-{
-    public Button runButton;
+namespace Array2DEditor {
 
-    private int numBlocks = 0;
-    private RectTransform rectTransform;
-    private List<GameObject> blocks = new List<GameObject>();
-
-    private void Awake()
+    public class ResultBlock : MonoBehaviour, IDropHandler
     {
-        rectTransform = GetComponent<RectTransform>();
-    }
+        public Button runButton;
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("OnDrop in Slot");
-        if(eventData.pointerDrag != null)
+        private int numBlocks = 0;
+        private RectTransform rectTransform;
+        private List<GameObject> blocks = new List<GameObject>();
+
+        private GameObject player;
+
+        private void Awake()
         {
-            eventData.pointerDrag.GetComponent<DragDrop>().slotted();
-            blocks.Add(eventData.pointerDrag.gameObject);
-
-            eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = 
-            rectTransform.anchoredPosition 
-            + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)
-            - new Vector2(0,eventData.pointerDrag.GetComponent<RectTransform>().rect.height*numBlocks);
-            
-            numBlocks += 1;
+            rectTransform = GetComponent<RectTransform>();
         }
-    }
 
-    private int getIndexOfBlock(GameObject block)
-    {
-        for(int i = 0; i < blocks.Count; i++)
+        public void OnDrop(PointerEventData eventData)
         {
-            if(blocks[i] == block)
+            Debug.Log("OnDrop in Slot");
+            if(eventData.pointerDrag != null)
             {
-                return i;
+                eventData.pointerDrag.GetComponent<DragDrop>().slotted();
+                blocks.Add(eventData.pointerDrag.gameObject);
+
+                eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = 
+                rectTransform.anchoredPosition 
+                + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)
+                - new Vector2(0,eventData.pointerDrag.GetComponent<RectTransform>().rect.height*numBlocks);
+                
+                numBlocks += 1;
             }
         }
-        return -1;
-    }
 
-    public void removeBlock(GameObject block)
-    {
-        int num = getIndexOfBlock(block);
-        blocks.Remove(block);
-        numBlocks = numBlocks - 1;
-        
-        // Loop through the remaining blocks and update the position of every other block
-        for(int i = num; i < blocks.Count; i++)
+        private int getIndexOfBlock(GameObject block)
         {
-            blocks[i].GetComponent<RectTransform>().anchoredPosition = 
-            rectTransform.anchoredPosition                                                // Position of Result Block
-            + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)    // Height of our block divided 2
-            - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height*i);      // The heights of the blocks above our current block
-        }
-
-    }
-
-    public async void Run()
-    {
-        runButton.interactable = false;
-        // Loop through every block and make them non-interactable
-        for(int i = 0; i < blocks.Count; i++)
-        {
-            blocks[i].GetComponent<IBlockInterface>().blockRaycast();
-        }
-
-        // Runs every block in our ResultBlock
-        for(int i = 0; i < blocks.Count; i++)
-        {
-            try
+            for(int i = 0; i < blocks.Count; i++)
             {
-                blocks[i].GetComponent<IBlockInterface>().BlockRun();
-                while(!blocks[i].GetComponent<IBlockInterface>().getStatus())
+                if(blocks[i] == block)
                 {
-                    await Task.Yield();
+                    return i;
                 }
-                Debug.Log("GameObject: " + blocks[i]);
             }
-            catch (MissingReferenceException e)
-            {
-                Debug.Log(e);
-                Debug.Log("ERROR OCCURED IN RESULT BLOCK Run()");
-            }
+            return -1;
         }
 
-        // Loops through every block in our ResultBlock and resets them
-        // Null Reference Exception sometimes occurs here
-        for(int i = 0; i < blocks.Count; i++)
+        public void removeBlock(GameObject block)
         {
-            blocks[i].GetComponent<IBlockInterface>().resetBlock();
+            int num = getIndexOfBlock(block);
+            blocks.Remove(block);
+            numBlocks = numBlocks - 1;
+            
+            // Loop through the remaining blocks and update the position of every other block
+            for(int i = num; i < blocks.Count; i++)
+            {
+                blocks[i].GetComponent<RectTransform>().anchoredPosition = 
+                rectTransform.anchoredPosition                                                // Position of Result Block
+                + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)    // Height of our block divided 2
+                - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height*i);      // The heights of the blocks above our current block
+            }
+
         }
 
-        runButton.interactable = true;
+        public async void Run()
+        {
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            runButton.interactable = false;
+            // Loop through every block and make them non-interactable
+            for(int i = 0; i < blocks.Count; i++)
+            {
+                blocks[i].GetComponent<IBlockInterface>().blockRaycast();
+            }
 
+            // Runs every block in our ResultBlock
+            for(int i = 0; i < blocks.Count; i++)
+            {
+                if (!player.GetComponent<PlayerCar>().getCrashed() && 
+                    !player.GetComponent<PlayerCar>().getFinished()) 
+                {
+                    try
+                    {
+                        blocks[i].GetComponent<IBlockInterface>().BlockRun();
+                        while(!blocks[i].GetComponent<IBlockInterface>().getStatus())
+                        {
+                            await Task.Yield();
+                        }
+                        Debug.Log("GameObject: " + blocks[i]);
+                    }
+                    catch (MissingReferenceException e)
+                    {
+                        Debug.Log(e);
+                        Debug.Log("ERROR OCCURED IN RESULT BLOCK Run()");
+                    }
+                }
+            }
+
+            // Loops through every block in our ResultBlock and resets them
+            // Null Reference Exception sometimes occurs here
+            for(int i = 0; i < blocks.Count; i++)
+            {
+                blocks[i].GetComponent<IBlockInterface>().resetBlock();
+            }
+            //runButton.interactable = true;
+        }
+        
     }
-    
 }

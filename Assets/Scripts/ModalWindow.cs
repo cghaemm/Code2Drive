@@ -26,7 +26,8 @@ public class ModalWindow : MonoBehaviour
 
     public void finishedLevel()
     {
-        // Add changing text here later
+        headingText.text = "CONGRATULATIONS!";
+        modalText.text = "You reached your goal safely!";
         gameObject.SetActive(true);
         restart_button.SetActive(false);
         next_button.SetActive(true);
@@ -34,20 +35,22 @@ public class ModalWindow : MonoBehaviour
 
     public void playerCrashed()
     {
-        // Add functions to change text later
-        lost();
         headingText.text = "CRASHED!";
+        modalText.text = "You crashed your car!";
+        lost();
     }
 
     public void playerOffroad()
     {
-        // Add functions to change text later
+        headingText.text = "CRASHED!";
+        modalText.text = "You drove off the road!";
         lost();
     }
 
     public void gameOver() // Use this function when player does not finish
     {
-        // Add functions to change text later
+        headingText.text = "FAILED!";
+        modalText.text = "You ran out of gas and didn't reach the goal!";
         lost();
     }
     
