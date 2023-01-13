@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 403806520704966693}
   - component: {fileID: 403806520704966714}
   - component: {fileID: 7513988099514328263}
+  - component: {fileID: 7015264570469639517}
   m_Layer: 5
   m_Name: Modal Window Canvas
   m_TagString: Untagged
@@ -298,6 +299,25 @@ MonoBehaviour:
   next_button: {fileID: 9025690813917728593}
   headingText: {fileID: 5134983703105128876}
   modalText: {fileID: 403806522065112051}
+--- !u!95 &7015264570469639517
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403806520704966715}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45b5d5b65bdd5e449992d7b4f80c077f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &403806520737297106
 GameObject:
   m_ObjectHideFlags: 0

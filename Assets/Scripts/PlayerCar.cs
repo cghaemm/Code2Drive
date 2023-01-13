@@ -361,6 +361,9 @@ namespace Array2DEditor {
             return finished;
         }
 
+        public void noFinish() {
+            road.GetComponent<GridController>().goalNotReached();
+        }
 
     }
 }

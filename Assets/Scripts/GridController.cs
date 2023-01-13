@@ -323,5 +323,10 @@ namespace Array2DEditor
         {
             modal_window.GetComponent<ModalWindow>().finishedLevel();
         }
+
+        public void goalNotReached() 
+        {
+            modal_window.GetComponent<ModalWindow>().gameOver();
+        }
     }
 }

@@ -12,6 +12,8 @@ public class ModalWindow : MonoBehaviour
     // In Java, final = const
     private const int MAIN_MENU_INDEX = 0;
 
+    //private Animator anim;
+
     [SerializeField] private GameObject restart_button;
     [SerializeField] private GameObject next_button;
     [SerializeField] private TextMeshProUGUI headingText;
@@ -22,6 +24,7 @@ public class ModalWindow : MonoBehaviour
     {
         gameObject.SetActive(false);
         modalText.text = "TESTING";
+        //anim = gameObject.GetComponent<Animator>();
     }
 
     public void finishedLevel()
@@ -29,6 +32,7 @@ public class ModalWindow : MonoBehaviour
         headingText.text = "CONGRATULATIONS!";
         modalText.text = "You reached your goal safely!";
         gameObject.SetActive(true);
+        //anim.SetTrigger("PopUp");
         restart_button.SetActive(false);
         next_button.SetActive(true);
     }
@@ -57,6 +61,7 @@ public class ModalWindow : MonoBehaviour
     public void lost()
     {
         gameObject.SetActive(true);
+        //anim.SetTrigger("PopUp");
         restart_button.SetActive(true);
         next_button.SetActive(false);
     }

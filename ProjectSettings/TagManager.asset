@@ -9,6 +9,7 @@ TagManager:
   - car
   - Goal
   - Truck
+  - Grass
   layers:
   - Default
   - TransparentFX

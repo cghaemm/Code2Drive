@@ -101,6 +101,13 @@ namespace Array2DEditor {
                 }
             }
 
+            // All player actions have been performed
+            if (!player.GetComponent<PlayerCar>().getCrashed() && 
+                    !player.GetComponent<PlayerCar>().getFinished()) {
+                // Player ran out of gas
+                player.GetComponent<PlayerCar>().noFinish();
+            }
+
             // Loops through every block in our ResultBlock and resets them
             // Null Reference Exception sometimes occurs here
             for(int i = 0; i < blocks.Count; i++)
