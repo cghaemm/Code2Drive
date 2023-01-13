@@ -330,11 +330,11 @@ namespace Array2DEditor {
             }
         }
 
-        private void playerCrashed() 
+        public void playerCrashed() 
         {
             crashed = true;
             destination = new Vector3(transform.position.x, 
-                transform.position.y, transform.position.z);
+            transform.position.y, transform.position.z);
         }
 
         public bool getCrashed() {
