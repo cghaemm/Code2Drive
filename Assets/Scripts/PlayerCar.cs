@@ -330,11 +330,22 @@ namespace Array2DEditor {
             }
         }
 
-        private void playerCrashed() 
+        public void playerCrashed() 
         {
             crashed = true;
             destination = new Vector3(transform.position.x, 
                 transform.position.y, transform.position.z);
+        }
+
+        public void playerOffroad() {
+            StartCoroutine(offroadCoroutine());
+        }
+
+        IEnumerator offroadCoroutine() {
+            crashed = true;
+            Debug.Log("WENT OFFROAD");
+            yield return new WaitForSeconds(10);
+            Debug.Log("Waited one second");
         }
 
         public bool getCrashed() {

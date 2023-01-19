@@ -12,7 +12,7 @@ public class ModalWindow : MonoBehaviour
     // In Java, final = const
     private const int MAIN_MENU_INDEX = 0;
 
-    //private Animator anim;
+    private Animator anim;
 
     [SerializeField] private GameObject restart_button;
     [SerializeField] private GameObject next_button;
@@ -24,15 +24,16 @@ public class ModalWindow : MonoBehaviour
     {
         gameObject.SetActive(false);
         modalText.text = "TESTING";
-        //anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     public void finishedLevel()
     {
         headingText.text = "CONGRATULATIONS!";
         modalText.text = "You reached your goal safely!";
+        gameObject.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(true);
-        //anim.SetTrigger("PopUp");
+        anim.SetTrigger("PopUp");
         restart_button.SetActive(false);
         next_button.SetActive(true);
     }
@@ -46,6 +47,13 @@ public class ModalWindow : MonoBehaviour
 
     public void playerOffroad()
     {
+        gameObject.GetComponent<Canvas>().enabled = false;
+        gameObject.SetActive(true);
+        StartCoroutine(playerOffCoroutine());
+    }
+
+    IEnumerator playerOffCoroutine() {
+        yield return new WaitForSeconds(1);
         headingText.text = "CRASHED!";
         modalText.text = "You drove off the road!";
         lost();
@@ -60,8 +68,9 @@ public class ModalWindow : MonoBehaviour
     
     public void lost()
     {
+        gameObject.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(true);
-        //anim.SetTrigger("PopUp");
+        anim.SetTrigger("PopUp");
         restart_button.SetActive(true);
         next_button.SetActive(false);
     }

@@ -17,9 +17,12 @@ namespace Array2DEditor {
 
         private GameObject player;
 
-        private void Awake()
+        public GameObject actionBlocker;
+
+        private void Awake() // Similar to Start Function
         {
             rectTransform = GetComponent<RectTransform>();
+            actionBlocker.SetActive(false);
         }
 
         public void OnDrop(PointerEventData eventData)
@@ -72,6 +75,7 @@ namespace Array2DEditor {
         {
             player = GameObject.FindGameObjectsWithTag("Player")[0];
             runButton.interactable = false;
+            actionBlocker.SetActive(true);
             // Loop through every block and make them non-interactable
             for(int i = 0; i < blocks.Count; i++)
             {

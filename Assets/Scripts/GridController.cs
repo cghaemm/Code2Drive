@@ -137,9 +137,10 @@ namespace Array2DEditor
         public void playerCarForward()
         {
             int curYPosition = playerCarPosition[0];
+            GameObject playerCar = carGrid[curYPosition, playerCarPosition[1]];
             if((curYPosition - 1) >= 0)
             {
-                GameObject playerCar = carGrid[curYPosition, playerCarPosition[1]];
+                //GameObject playerCar = carGrid[curYPosition, playerCarPosition[1]];
                 carGrid[curYPosition-1, playerCarPosition[1]] = playerCar;
                 carGrid[curYPosition, playerCarPosition[1]] = null;
                 playerCarPosition[0] = curYPosition-1;
@@ -147,7 +148,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR FORWARD");
-                // Add modal window here later
+                playerCar.GetComponent<PlayerCar>().playerOffroad();
                 modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
@@ -158,9 +159,9 @@ namespace Array2DEditor
         public void playerCarBackward()
         {
             int curYPosition = playerCarPosition[0];
+            GameObject playerCar = carGrid[curYPosition, playerCarPosition[1]];
             if((curYPosition + 1) < carGrid.GetLength(0))
             {
-                GameObject playerCar = carGrid[curYPosition, playerCarPosition[1]];
                 carGrid[curYPosition+1, playerCarPosition[1]] = playerCar;
                 carGrid[curYPosition, playerCarPosition[1]] = null;
                 playerCarPosition[0] = curYPosition + 1;
@@ -169,6 +170,7 @@ namespace Array2DEditor
             {
                 Debug.Log("CAR WENT TOO FAR BACKWARD");
                 // Add modal window here later
+                playerCar.GetComponent<PlayerCar>().playerOffroad();
                 modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
@@ -178,9 +180,9 @@ namespace Array2DEditor
         public void playerCarLeft()
         {
             int curXPosition = playerCarPosition[1];
+            GameObject playerCar = carGrid[playerCarPosition[0], curXPosition];
             if((curXPosition - 1) >= 0)
             {
-                GameObject playerCar = carGrid[playerCarPosition[0], curXPosition];
                 carGrid[playerCarPosition[0], curXPosition-1] = playerCar;
                 carGrid[playerCarPosition[0], curXPosition] = null;
                 playerCarPosition[1] = curXPosition-1;
@@ -188,6 +190,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE LEFT");
+                playerCar.GetComponent<PlayerCar>().playerOffroad();
                 modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
         }
@@ -195,9 +198,9 @@ namespace Array2DEditor
         public void playerCarRight()
         {
             int curXPosition = playerCarPosition[1];
+            GameObject playerCar = carGrid[playerCarPosition[0], curXPosition];
             if((curXPosition + 1) < carGrid.GetLength(1))
             {
-                GameObject playerCar = carGrid[playerCarPosition[0], curXPosition];
                 carGrid[playerCarPosition[0], curXPosition+1] = playerCar;
                 carGrid[playerCarPosition[0], curXPosition] = null;
                 playerCarPosition[1] = curXPosition + 1;
@@ -205,6 +208,7 @@ namespace Array2DEditor
             else
             {
                 Debug.Log("CAR MOVED TOO FAR TO THE RIGHT");
+                playerCar.GetComponent<PlayerCar>().playerOffroad();
                 modal_window.GetComponent<ModalWindow>().playerOffroad();
             }
 
