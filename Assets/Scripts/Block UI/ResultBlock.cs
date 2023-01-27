@@ -36,7 +36,8 @@ namespace Array2DEditor {
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = 
                 rectTransform.anchoredPosition 
                 + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)
-                - new Vector2(0,eventData.pointerDrag.GetComponent<RectTransform>().rect.height*numBlocks);
+                - new Vector2(0, eventData.pointerDrag.GetComponent<RectTransform>().rect.height*numBlocks)
+                - new Vector2(0, eventData.pointerDrag.GetComponent<RectTransform>().rect.height/2);
                 
                 numBlocks += 1;
             }
@@ -66,9 +67,25 @@ namespace Array2DEditor {
                 blocks[i].GetComponent<RectTransform>().anchoredPosition = 
                 rectTransform.anchoredPosition                                                // Position of Result Block
                 + new Vector2(0, (rectTransform.rect.height*rectTransform.localScale.y)/2)    // Height of our block divided 2
-                - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height*i);      // The heights of the blocks above our current block
+                - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height*i)       // The heights of the blocks above our current block
+                - new Vector2(0, blocks[i].GetComponent<RectTransform>().rect.height/2);
             }
+        }
 
+        public void blockRaycasts() {
+            // Loop through every block and make them non-interactable
+            for(int i = 0; i < blocks.Count; i++)
+            {
+                blocks[i].GetComponent<IBlockInterface>().blockRaycast();
+            }
+        }
+
+        public void stopBlockRaycasts() {
+            // Loop through every block and make them interactable
+            for(int i = 0; i < blocks.Count; i++) 
+            {
+                blocks[i].GetComponent<IBlockInterface>().unBlockRaycast();
+            }
         }
 
         public async void Run()
@@ -76,11 +93,7 @@ namespace Array2DEditor {
             player = GameObject.FindGameObjectsWithTag("Player")[0];
             runButton.interactable = false;
             actionBlocker.SetActive(true);
-            // Loop through every block and make them non-interactable
-            for(int i = 0; i < blocks.Count; i++)
-            {
-                blocks[i].GetComponent<IBlockInterface>().blockRaycast();
-            }
+            
 
             // Runs every block in our ResultBlock
             for(int i = 0; i < blocks.Count; i++)

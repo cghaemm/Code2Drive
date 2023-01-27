@@ -51,6 +51,10 @@ namespace Array2DEditor {
             canvasGroup.blocksRaycasts = false;
         }
 
+        public void unBlockRaycast() {
+            canvasGroup.blocksRaycasts = true;
+        }
+
         public void resetBlock()
         {
             finished = false;

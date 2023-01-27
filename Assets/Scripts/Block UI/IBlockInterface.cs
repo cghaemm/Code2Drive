@@ -10,5 +10,7 @@ public interface IBlockInterface
 
     void blockRaycast();
 
+    void unBlockRaycast();
+
     void resetBlock();
 }

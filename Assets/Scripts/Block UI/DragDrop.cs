@@ -41,6 +41,7 @@ namespace Array2DEditor {
                 // Remove the block from the ResultBlock List
                 Destroy(gameObject);
             }
+            resultStack.GetComponent<ResultBlock>().stopBlockRaycasts();
         }
 
         public void OnBeginDrag(PointerEventData eventData) {
@@ -56,6 +57,7 @@ namespace Array2DEditor {
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = .6f;
             inSlot = false;
+            resultStack.GetComponent<ResultBlock>().blockRaycasts();
         }
         
         // While the object is dragged
