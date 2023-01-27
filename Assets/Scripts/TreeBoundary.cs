@@ -17,5 +17,10 @@ public class TreeBoundary : MonoBehaviour
         {
             other.gameObject.GetComponent<RoadLine>().moveToStart();
         }
+
+        if(other.gameObject.tag == "Grass") {
+            Debug.Log("GRASS ENCOUNTERED");
+            other.gameObject.GetComponent<GroundTile>().moveToStart();
+        }
     }
 }
