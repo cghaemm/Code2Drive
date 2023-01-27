@@ -4,26 +4,11 @@ using UnityEngine;
 using System.Threading.Tasks;
 
 namespace Array2DEditor {
-    public class TurnRightBlock : MonoBehaviour, IBlockInterface
+    public class TurnRightBlock : IBlockInterface
     {
-
-        private bool finished;
-        private CanvasGroup canvasGroup;
-        private GameObject player;
-
-        // Start is called before the first frame update
-        void Awake()
+        public override async void BlockRun()
         {
-            finished = false;
-            canvasGroup = GetComponent<CanvasGroup>();
-        }
-
-        // Activate player.goStraight()
-        // Add function to ForwardBlock script that updates finished status
-        //    - Use that function in PlayerCar Script when finished moving
-        public async void BlockRun()
-        {
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
             player.GetComponent<PlayerCar>().turnRight();
             
             try{
@@ -38,27 +23,6 @@ namespace Array2DEditor {
                 Debug.Log(e);
                 Debug.Log("ERROR OCCURED IN BlockRun()");
             }
-            
-        }
-
-        public bool getStatus()
-        {
-            return finished;
-        }
-
-        public void blockRaycast()
-        {
-            canvasGroup.blocksRaycasts = false;
-        }
-
-        public void unBlockRaycast() {
-            canvasGroup.blocksRaycasts = true;
-        }
-
-        public void resetBlock()
-        {
-            finished = false;
-            canvasGroup.blocksRaycasts = true;
         }
     }
 }

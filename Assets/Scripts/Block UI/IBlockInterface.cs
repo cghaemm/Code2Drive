@@ -2,15 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBlockInterface
+public abstract class IBlockInterface : MonoBehaviour
 {
-    void BlockRun();
+    protected bool finished;
+    protected CanvasGroup canvasGroup;
 
-    bool getStatus();
+    // Start is called before the first frame update
+    public virtual void Awake()
+    {
+        finished = false;
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
 
-    void blockRaycast();
+    public abstract void BlockRun();
 
-    void unBlockRaycast();
+    public virtual bool getStatus()
+    {
+        return finished;
+    }
 
-    void resetBlock();
+    public virtual void blockRaycast()
+    {
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public virtual void unBlockRaycast() {
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void resetBlock()
+    {
+        finished = false;
+        canvasGroup.blocksRaycasts = true;
+    }
 }
