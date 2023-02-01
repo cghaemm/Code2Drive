@@ -61,33 +61,33 @@ namespace Array2DEditor {
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                turnLeft();
+            // if(Input.GetKeyDown(KeyCode.LeftArrow))
+            // {
+            //     turnLeft();
                 
-            }
+            // }
 
-            if(Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                turnRight();
-            }
+            // if(Input.GetKeyDown(KeyCode.RightArrow))
+            // {
+            //     turnRight();
+            // }
 
-            if(Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                goStraight();
-            }
+            // if(Input.GetKeyDown(KeyCode.UpArrow))
+            // {
+            //     goStraight();
+            // }
 
-            // Left Turn Signal
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                leftTurnSignal();
-            }
+            // // Left Turn Signal
+            // if(Input.GetKeyDown(KeyCode.Q))
+            // {
+            //     leftTurnSignal();
+            // }
 
-            // Right Turn Signal
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                rightTurnSignal();
-            }
+            // // Right Turn Signal
+            // if(Input.GetKeyDown(KeyCode.E))
+            // {
+            //     rightTurnSignal();
+            // }
             
             // Movement Stuff Below Here
             if(transform.position == destination)

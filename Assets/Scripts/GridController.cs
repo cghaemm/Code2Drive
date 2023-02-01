@@ -35,6 +35,9 @@ namespace Array2DEditor
         [SerializeField]
         private GameObject modal_window;
 
+        [SerializeField]
+        private GameObject road_dividers;
+
         // Start is called before the first frame update
 
         void Start()
@@ -63,6 +66,9 @@ namespace Array2DEditor
             int[,] newGrid = grid.GetCells();
             // newGrid[y, x]
             Debug.Log(newGrid);
+
+            Debug.Log("Spawning Dividers");
+            spawn_dividers(numColumns, length);
 
             for(int rowNum = 0; rowNum < numRows; rowNum++)
             {
@@ -121,6 +127,19 @@ namespace Array2DEditor
         void Update()
         {
             
+        }
+
+        private void spawn_dividers(int num_columns, float width) 
+        {
+            float xBuffer = 10f;
+            float yBuffer = 1.51f;
+            for(int i = 1; i < num_columns; i++)
+            {
+                Quaternion divider_rotation = Quaternion.Euler(0, 0, 0);
+                Vector3 position = new Vector3(-xBuffer+transform.position.x, transform.position.y+yBuffer, 
+                transform.position.z - ((width)/2) + i*(width/num_columns));
+                GameObject divider = Instantiate(road_dividers, position, divider_rotation);
+            }
         }
 
         public int getNumRows()

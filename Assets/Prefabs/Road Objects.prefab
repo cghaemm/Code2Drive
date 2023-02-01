@@ -206,6 +206,7 @@ MonoBehaviour:
   yBuffer: 0.23
   yBufferGoal: 3
   modal_window: {fileID: 403806520704966715, guid: 0bc24f70060a98a4a857ed946858792c, type: 3}
+  road_dividers: {fileID: 2835331278761819680, guid: c4163feda80b3ee47a80965d5cae1ba6, type: 3}
 --- !u!1 &4867087581400040750
 GameObject:
   m_ObjectHideFlags: 0
