@@ -9,7 +9,9 @@ namespace Array2DEditor
         private GameObject road;
 
         private float forwardDistance;
-        private float speed = 0.05f;
+
+        [SerializeField]
+        private float speed = 0.2f;
         private Rigidbody rb;
         private Vector3 destination;
 
