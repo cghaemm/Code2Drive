@@ -11,7 +11,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MenuTest.unity
     guid: 623f0df1ad17eea4aa45a87fe0602652
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CarTest1.unity
     guid: b03c127e9798f1f4e8208654a7a39985
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_1.unity
+    guid: be59694b23ff0184a88a664d962595de
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_2.unity
+    guid: 4099b4a67e30ef04db27294f1063da27
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_3.unity
+    guid: 19a6758d388d850409d602c15647fca8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_4.unity
+    guid: 1ecab6f0576bec945939c3638a6bae31
   m_configObjects: {}

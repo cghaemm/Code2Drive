@@ -133,11 +133,13 @@ namespace Array2DEditor
         {
             float xBuffer = 10f;
             float yBuffer = 1.51f;
+            Quaternion divider_rotation = Quaternion.Euler(0, 0, 0);
             for(int i = 1; i < num_columns; i++)
             {
-                Quaternion divider_rotation = Quaternion.Euler(0, 0, 0);
-                Vector3 position = new Vector3(-xBuffer+transform.position.x, transform.position.y+yBuffer, 
-                transform.position.z - ((width)/2) + i*(width/num_columns));
+                Vector3 position = new Vector3(-xBuffer+gameObject.transform.position.x, 
+                gameObject.transform.position.y+yBuffer, 
+                gameObject.transform.position.z - ((width)/2) + i*(width/num_columns));
+
                 GameObject divider = Instantiate(road_dividers, position, divider_rotation);
             }
         }
