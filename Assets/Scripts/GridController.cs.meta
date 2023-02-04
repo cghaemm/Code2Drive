@@ -8,6 +8,9 @@ MonoImporter:
   - npc_car: {fileID: 8677500906063010704, guid: 8b4b23c97ca80e54ba06bdbd7d1ff47b, type: 3}
   - goal: {fileID: 3031657280914115522, guid: 2327b2c32cc89d94aad795e59badbbc9, type: 3}
   - sports_car: {fileID: 5638013955558124253, guid: 400fef125eb384f8d852ac60c3534422, type: 3}
+  - truck: {fileID: 3080516496834167036, guid: eebc888a343da2d498a8646c02185476, type: 3}
+  - modal_window: {instanceID: 0}
+  - road_dividers: {fileID: 2835331278761819680, guid: c4163feda80b3ee47a80965d5cae1ba6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

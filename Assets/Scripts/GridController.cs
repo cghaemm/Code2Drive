@@ -65,9 +65,8 @@ namespace Array2DEditor
 
             int[,] newGrid = grid.GetCells();
             // newGrid[y, x]
-            Debug.Log(newGrid);
+            // Debug.Log(newGrid);
 
-            Debug.Log("Spawning Dividers");
             spawn_dividers(numColumns, length);
 
             for(int rowNum = 0; rowNum < numRows; rowNum++)
@@ -126,7 +125,6 @@ namespace Array2DEditor
         // Update is called once per frame
         void Update()
         {
-            
         }
 
         private void spawn_dividers(int num_columns, float width) 
@@ -265,43 +263,6 @@ namespace Array2DEditor
             }
         }
 
-        /*
-        class Pet {
-            String name;
-            int age;
-
-            Pet(String newName, int newAge) {
-                name = newName;
-                age = newAge;
-            }
-
-            void pee() {
-                System.out.println(name + " peed");
-            }
-        }
-
-        class Dog extends Pet {
-            String breed;
-
-            void sit() {
-                System.out.println(super.name + " is sitting");
-            }
-        }
-
-        class Cat extends Pet {
-            String breed;
-
-            void sleep() {
-                System.out.println(super.name + " is sleeping");
-            }
-        }
-
-        Pet myDog = new Pet();
-        System.out.println(myDog.name); // "" or null
-        System.out.println(myDog.age); // 0 or null
-        myDog.pee(); //  peed
-        */
-
         public void checkLeftPC()
         {
             // Checks if car is to left of player
@@ -339,8 +300,12 @@ namespace Array2DEditor
             }
         }
 
+        // when player crashes on street
         public void crashOccured()
         {
+            stopMovingObjects();
+            cars_move_forward();
+            turnOffGoal();
             modal_window.GetComponent<ModalWindow>().playerCrashed();
         }
 
@@ -352,6 +317,28 @@ namespace Array2DEditor
         public void goalNotReached() 
         {
             modal_window.GetComponent<ModalWindow>().gameOver();
+        }
+
+        // Use this function when player has crashed
+        private void stopMovingObjects()
+        {
+            IMoveable[] moveables = FindObjectsOfType<IMoveable>();
+            foreach (IMoveable moveable in moveables) {
+                moveable.stopMoving();
+            }
+        }
+
+        private void turnOffGoal() {
+            GameObject goal = GameObject.FindGameObjectWithTag("Goal");
+            goal.SetActive(false);
+        }
+
+        private void cars_move_forward()
+        {
+            ICar[] cars = FindObjectsOfType<ICar>();
+            foreach(ICar car in cars) {
+                car.crash_move_forward();
+            }
         }
     }
 }

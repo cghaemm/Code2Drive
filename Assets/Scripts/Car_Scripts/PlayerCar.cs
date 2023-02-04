@@ -62,34 +62,6 @@ namespace Array2DEditor {
         // Update is called once per frame
         void Update()
         {
-            // if(Input.GetKeyDown(KeyCode.LeftArrow))
-            // {
-            //     turnLeft();
-                
-            // }
-
-            // if(Input.GetKeyDown(KeyCode.RightArrow))
-            // {
-            //     turnRight();
-            // }
-
-            // if(Input.GetKeyDown(KeyCode.UpArrow))
-            // {
-            //     goStraight();
-            // }
-
-            // // Left Turn Signal
-            // if(Input.GetKeyDown(KeyCode.Q))
-            // {
-            //     leftTurnSignal();
-            // }
-
-            // // Right Turn Signal
-            // if(Input.GetKeyDown(KeyCode.E))
-            // {
-            //     rightTurnSignal();
-            // }
-            
             // Movement Stuff Below Here
             if(transform.position == destination)
             {
@@ -180,7 +152,6 @@ namespace Array2DEditor {
                 leftTurnSignal();
             }
 
-            
             moving = true;
             destination = new Vector3(transform.position.x, transform.position.y,
             transform.position.z + sideToSideDistance);
@@ -239,7 +210,6 @@ namespace Array2DEditor {
 
             Debug.Log("Move Backward");
             destination = new Vector3(transform.position.x+forwardDistance, transform.position.y, transform.position.z);
-            
             
             road.GetComponent<GridController>().playerCarBackward();
         }
@@ -325,10 +295,15 @@ namespace Array2DEditor {
         {
             if(collision.gameObject.tag == "car" || collision.gameObject.tag == "Truck")
             {
+                if(!crashed) {
+                    playerCrashed();
+                    road.GetComponent<GridController>().crashOccured();
+                }
                 Debug.Log("The Player crashed into a car");
-                road.GetComponent<GridController>().crashOccured();
-                playerCrashed();
+                Vector3 directionVector = (collision.gameObject.transform.position - gameObject.transform.position).normalized;
+                collision.gameObject.GetComponent<ICar>().hitByPlayer(directionVector);
             }
+
         }
 
         public void playerCrashed() 
